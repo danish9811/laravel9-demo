@@ -1,4 +1,9 @@
 
+____________________________________________________________________________________
+how you push your code to github with token
+    > git remote remove origin
+    > git remote add origin https://[TOKEN]@github.com/[USER]/[REPO]
+    > git push
 ________________________________________________________________________________________
 Make Git store the username and password and it will never ask for them.
 https://www.freecodecamp.org/news/how-to-fix-git-always-asking-for-user-credentials/

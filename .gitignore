@@ -14,8 +14,6 @@ npm-debug.log
 yarn-error.log
 /.idea
 /.vscode
-/volumes
-
 
 # the helper files generate by barryVDH ide helper composer package
 .phpstorm.meta.php
