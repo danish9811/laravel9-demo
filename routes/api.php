@@ -26,9 +26,10 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 
-
-
+// the endpoints for weather api
 Route::get('/getResultOne', [WeatherMapController::class, 'usingHttp']);
+Route::get('/getResultTwo', [WeatherMapController::class, 'usingOtifCurl']);
+Route::get('/getResultThree', [WeatherMapController::class, 'usingCurl']);
 
 
 

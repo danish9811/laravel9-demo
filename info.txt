@@ -1,4 +1,9 @@
 
+
+__________________________________________________________________________________
+getting the weather for current locattion by giving it latitude and longitude
+https://stackoverflow.com/questions/14931268/getting-the-weather-in-current-location-from-latitude-and-longitude-in-iphone
+
 ____________________________________________________________________________________
 how you push your code to github with token
     > git remote remove origin
