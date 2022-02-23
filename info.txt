@@ -1,0 +1,124 @@
+
+________________________________________________________________________________________
+Make Git store the username and password and it will never ask for them.
+https://www.freecodecamp.org/news/how-to-fix-git-always-asking-for-user-credentials/
+    > git config --global credential.helper store
+    > git config --global credential.helper cache
+YOU CAN ALSO TIMEOUT THIS CREDENTIAL :
+    > git config --global credential.helper 'cache --timeout=600'
+
+
+________________________________________________________________________________________
+specifying git username, email and password for global and repository specific
+https://docs.github.com/en/get-started/getting-started-with-git/setting-your-username-in-git
+GLOBALLY :
+    > $ git config --global user.name "Mona Lisa"
+    > $ git config --global user.name
+
+REPOSITYR SPECIFIC :
+    > $ git config user.name "Mona Lisa"
+    > $ git config user.name
+    > Mona Lisa
+____________________________________________________________________
+to kill an existing container
+    > kill container (contianerId)
+    > sudo kill container (containerId)
+    > sudo kill container (containerId) -f
+__________________________________________________________________
+very good website for laravel code examples, snippets, and practice codes
+https://laravelexamples.com
+____________________________________________________________________
+http status code, what is the meaning of a particular code number
+https://restfulapi.net/http-status-codes/
+____________________________________________________________________
+i have installed barrVdh IDE helper, and these commands are for generating data
+
+    > php artisan ide-helper:generate - PHPDoc generation for Laravel Facades
+    > php artisan ide-helper:models - PHPDocs for models
+    > php artisan ide-helper:meta - PhpStorm Meta file
+___________________________________________________________________
+vuejs course free code camp
+https://www.youtube.com/watch?v=FXpIoQ_rT_c
+_____________________________________________________________________
+// repo link for laravel passport, anil siddu
+https://github.com/anil-sidhu/laravel-passport-poc
+_____________________________________________________________
+
+// material to read and practice by otif 
+https://synopticdata.com/mesonet-api
+https://github.com/otifsolutions/curl-handler
+https://www.php.net/manual/en/curl.examples.php
+https://laravel.com/docs/9.x/http-client
+
+Reading Material
+https://laravel.com/docs/9.x/structure
+https://laravel.com/docs/9.x/lifecycle
+https://laravel.com/docs/9.x/facades
+https://laravel.com/docs/9.x/passport
+____________________________________________________________________
+// practicing API's with fake json data
+https://jsonplaceholder.typicode.com
+
+// show all composer packages installed
+    > composer show -i 		(simple structure)
+    > composer show -i -t   (tree structure)
+__________________________________________________________________
+
+// the common php error i face
+Composer detected issues in your platform: Your Composer dependencies require a PHP version ">= 8.0.2". 
+
+// the above is resolved by sir has updated the otifsolutions/docker repo to 8.0.2 support
+
+// solution to this problem
+https://stackoverflow.com/questions/66553264/laravel-project-not-showing-in-localhost-composer-detected-issues-in-your-plat
+
+// command to solve this problem
+    >  composer update --ignore-platform-reqs
+
+
+// the issue sometimes occures when apache2 is running behind, by uninstalling it, the problem can be solved
+    > sudo apt remove --purge apache2
+    > sudo apt autoremove -y
+_______________________________________________________________________
+
+// the right configuration start of the project
+CONTAINER ID   IMAGE                    COMMAND                  CREATED         STATUS              PORTS                                                                      NAMES
+b81f6f97bccf   lara-project-1_php       "/bin/init_container…"   3 minutes ago   Up About a minute   0.0.0.0:80->80/tcp, :::80->80/tcp, 0.0.0.0:443->443/tcp, :::443->443/tcp   dc_php
+67a64db419b9   phpmyadmin/phpmyadmin    "/docker-entrypoint.…"   3 minutes ago   Up 3 minutes        0.0.0.0:9002->80/tcp, :::9002->80/tcp                                      dc_pma
+6d9064effe0f   lara-project-1_mariadb   "docker-entrypoint.s…"   3 minutes ago   Up 3 minutes        3306/tcp                                                                   dc_db
+_______________________________________________________________________
+
+// remove an image from docker images
+    > sudo docker rmi (imageCode)
+    > sudo docker rmi (imageCode) -f (flag -f for force remove)
+__________________________________________________________________________
+
+// remove apache2 from ubuntu link
+https://www.edureka.co/community/46181/how-to-uninstall-apache2-on-ubuntu
+__________________________________________________________________________
+
+how to work and play with api and code in laravel, how to write code 
+https://www.twilio.com/blog/building-and-consuming-a-restful-api-in-laravel-php
+__________________________________________________________________________
+
+// way to install a different version of laravel
+    > composer create-project laravel/laravel appName "version"
+    > composer create-project laravel/laravel laravelProject "9.0"
+
+
+// sir has changed dockerfile php version, whenever i should create the project, i should clone that specific branch
+// and then install the laravel project into there, and then `make install`
+___________________________________________________________________________
+
+
+// if you ever find the error about data, phpmyadmin rejected the permission, access denied, follow these steps
+    > access to all the permissions
+    > or delete the volumes folder and `sudo make install`
+    > or delete the volumes folder and `sudo make install`
+    > after deleting the volumes run `composer install`
+    > restart the project by `sudo make stop` and `sudo make start`
+________________________________________________________________________________________
+
+// zura, has video to create full stack application using laravel, vuejs and tailwindcss, and deployed
+https://youtu.be/WLQDpY7lOLg
+________________________________________________________________________________________________________
