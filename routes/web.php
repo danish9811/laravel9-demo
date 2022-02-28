@@ -22,8 +22,3 @@ Route::get('/cache', static function () {
     // return Cache()->get('key');
     return Cache::get('key');
 });
-
-
-
-
-

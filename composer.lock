@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "3968df2665ec7f9c0eded2e3cb0a9e12",
+    "content-hash": "b80e1429d3f7c88a693233822a7bfffc",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -2650,6 +2650,50 @@
                 "source": "https://github.com/otifsolutions/curl-handler/tree/v1.0.0"
             },
             "time": "2021-04-01T08:55:24+00:00"
+        },
+        {
+            "name": "otifsolutions/laravel-settings",
+            "version": "1.0.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/otifsolutions/laravel-settings.git",
+                "reference": "229958ad30006b1c36495dbaac1316312026d7e3"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/otifsolutions/laravel-settings/zipball/229958ad30006b1c36495dbaac1316312026d7e3",
+                "reference": "229958ad30006b1c36495dbaac1316312026d7e3",
+                "shasum": ""
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "OTIFSolutions\\Laravel\\Settings\\ServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "OTIFSolutions\\Laravel\\Settings\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "OTIF Solutions",
+                    "email": "contact@otif-solutions.com"
+                }
+            ],
+            "description": "This package creates a complete generic Settings Table and structure to be used in project. For Laravel.",
+            "support": {
+                "issues": "https://github.com/otifsolutions/laravel-settings/issues",
+                "source": "https://github.com/otifsolutions/laravel-settings/tree/1.0.1"
+            },
+            "time": "2021-03-26T14:09:14+00:00"
         },
         {
             "name": "paragonie/constant_time_encoding",
@@ -9370,7 +9414,9 @@
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": {
-        "php": "^8.0"
+        "php": "^8.0",
+        "ext-curl": "*",
+        "ext-json": "*"
     },
     "platform-dev": [],
     "plugin-api-version": "2.2.0"

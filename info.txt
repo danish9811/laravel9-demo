@@ -1,4 +1,35 @@
 
+https://stackoverflow.com/questions/22414524/how-can-i-make-laravel-return-a-custom-error-for-a-json-rest-api
+
+https://api.synopticdata.com/v2/stations/metadata?token=ce770603a6654e2bb78695214ca6245b&radius=31.520370,74.358749,10&limit=10
+https://api.synopticdata.com/v2/stations/metadata?token=ce770603a6654e2bb78695214ca6245b&radius=31.520370,74.358749,10&limit=10
+
+https://developers.synopticdata.com/mesonet/explorer/
+https://developers.synopticdata.com/mesonet/v2/getting-started/
+
+_______________________________________________________________________________________________________
++++++++++++++++++++++++++++++ LEARNING RESOURCES | YOUTUBE VIDEOS AND SERIES ++++++++++++++++++++++++++
+-------------------------------------------------------------------------------------------------------
+> https://youtu.be/30qk04BG9G4  // create and linktree 1-Hour app by a very expert guy from laracast, called "Andrew schmelium"
+> https://youtu.be/VPvVD8t02U8  // flutter, 37-Hours from beginner to releasing your own apps on playsore and appstore, by vandad,
+>
+
+________________________________________________________________________________________________________
+----------------------------- LEARNING RESOURCES | ARTICLES AND BLOGS ----------------------------------
+> https://www.tutsmake.com
+> https://www.laraning.com/
+>
+
+_________________________________________________________________________________________________________
+_________________________________________________________________________________________________________
+SCRYPSTER VIDEO
+HOW TO CREATE AN API USING LARAVEL PASSPORT AND ACCESS TOKEN GENERATE AND SAVE THE USER INTO THE DATABASE
+    > https://youtu.be/R3Hec0_U2Cs
+
+____________________________________________________________________________________
+LINKS :
+    https://www.latlong.net/
+    https://openweathermap.org
 
 __________________________________________________________________________________
 getting the weather for current locattion by giving it latitude and longitude
@@ -9,6 +40,7 @@ how you push your code to github with token
     > git remote remove origin
     > git remote add origin https://[TOKEN]@github.com/[USER]/[REPO]
     > git push
+
 ________________________________________________________________________________________
 Make Git store the username and password and it will never ask for them.
 https://www.freecodecamp.org/news/how-to-fix-git-always-asking-for-user-credentials/
@@ -29,29 +61,36 @@ REPOSITYR SPECIFIC :
     > $ git config user.name "Mona Lisa"
     > $ git config user.name
     > Mona Lisa
+
 ____________________________________________________________________
 to kill an existing container
     > kill container (contianerId)
     > sudo kill container (containerId)
     > sudo kill container (containerId) -f
+
 __________________________________________________________________
 very good website for laravel code examples, snippets, and practice codes
 https://laravelexamples.com
+
 ____________________________________________________________________
 http status code, what is the meaning of a particular code number
 https://restfulapi.net/http-status-codes/
+
 ____________________________________________________________________
 i have installed barrVdh IDE helper, and these commands are for generating data
 
     > php artisan ide-helper:generate - PHPDoc generation for Laravel Facades
     > php artisan ide-helper:models - PHPDocs for models
     > php artisan ide-helper:meta - PhpStorm Meta file
+
 ___________________________________________________________________
 vuejs course free code camp
 https://www.youtube.com/watch?v=FXpIoQ_rT_c
+
 _____________________________________________________________________
 // repo link for laravel passport, anil siddu
 https://github.com/anil-sidhu/laravel-passport-poc
+
 _____________________________________________________________
 
 // material to read and practice by otif 
@@ -91,7 +130,9 @@ https://stackoverflow.com/questions/66553264/laravel-project-not-showing-in-loca
     > sudo apt autoremove -y
 _______________________________________________________________________
 
-// the right configuration start of the project
+THE CONTAINER CONFIGURATION, WHEN THE PROJECT START, TO SEE THE CONFIGURATION TRY
+    > sudo docker ps
+
 CONTAINER ID   IMAGE                    COMMAND                  CREATED         STATUS              PORTS                                                                      NAMES
 b81f6f97bccf   lara-project-1_php       "/bin/init_container…"   3 minutes ago   Up About a minute   0.0.0.0:80->80/tcp, :::80->80/tcp, 0.0.0.0:443->443/tcp, :::443->443/tcp   dc_php
 67a64db419b9   phpmyadmin/phpmyadmin    "/docker-entrypoint.…"   3 minutes ago   Up 3 minutes        0.0.0.0:9002->80/tcp, :::9002->80/tcp                                      dc_pma
