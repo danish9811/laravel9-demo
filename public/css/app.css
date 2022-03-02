@@ -1,4 +1,9 @@
 
+/* the table css to beautify table */
+/* give class ".styled-table" to the table to which you want to beautify */
+
+
+
 .styled-table {
     border-collapse: collapse;
     margin: 0 auto;

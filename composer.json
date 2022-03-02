@@ -18,7 +18,8 @@
     "laravel/sanctum": "^2.14",
     "laravel/tinker": "^2.7",
     "otifsolutions/curl-handler": "^1.0",
-    "otifsolutions/laravel-settings": "^1.0"
+    "otifsolutions/laravel-settings": "^1.0",
+    "ext-readline": "*"
   },
   "require-dev": {
     "barryvdh/laravel-ide-helper": "^2.12",

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Exception;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\Http;
 use OTIFSolutions\CurlHandler\Curl;
 use OTIFSolutions\Laravel\Settings\Models\Setting;
@@ -14,20 +15,20 @@ class MesonetApiController extends Controller {
     private string $longitude = '74.358749';
 
     public function __construct() {
-        Setting::set('token', 'ce770603a6654e2bb78695214ca6245b');
+        Setting::set('mesonet_api_token', 'ce770603a6654e2bb78695214ca6245b');
     }
 
     /**
-     * <b>getMesonetApiResultViaHttp() : Respose</b>
-     * <p>this method will fetch the current weather by hitting api https://api.synopticdata.com/v2/stations/metadata </p>
-     * @return \Illuminate\Http\JsonResponse|mixed
+     * <b>getMesonetApiResultViaHttp() </b>
+     * <p>this method will fetch the current weather by hitting api endpoint with HTTP Method
+     * <a href="https://api.synopticdata.com/v2/stations/metadata?">https://api.synopticdata.com/v2/stations/metadata?</a> </p>
+     * @return JsonResponse|mixed
      */
     public function getMesonetApiResultViaHttp() {
-
         try {
             $response = json_decode(
                 Http::get('https://api.synopticdata.com/v2/stations/metadata?', [
-                    'token' => Setting::get('token'),
+                    'token' => Setting::get('mesonet_api_token'),
                     'radius' => $this->latitude . ',' . $this->longitude . ',10'
                 ])
                 , true, 512, JSON_THROW_ON_ERROR);
@@ -42,12 +43,18 @@ class MesonetApiController extends Controller {
         return $response;
     }
 
+    /**
+     * <b>getMesonetApiResultViaOtifCurl()</b>
+     * <p>this method will fetch the current weather by hitting api endpoint library with Otif Curl library
+     * <a href="https://api.synopticdata.com/v2/stations/metadata?">https://api.synopticdata.com/v2/stations/metadata?</a> </p>
+     * @return JsonResponse|mixed
+     */
     public function getMesonetApiResultViaOtifCurl() {
         try {
             $response = Curl::Make()
                 ->url('https://api.synopticdta.com/v2/stations/metadata')
                 ->params([
-                    'token' => Setting::get('token'),
+                    'token' => Setting::get('mesonet_api_token'),
                     'radius' => $this->latitude . ',' . $this->longitude . ',10'
                 ])
                 ->execute();
@@ -56,21 +63,32 @@ class MesonetApiController extends Controller {
             return Response::json([
                 'code' => 400,
                 'message' => 'error fetching weather',
+                'description' => $exception->getMessage()
             ]);
         }
 
         return $response;
     }
 
+    /**
+     * <b>getMesonetApiResultViaOtifCurl() </b>
+     * <p>this method will fetch the current weather by hitting api endpoint library with Curl
+     * <a href="https://api.synopticdata.com/v2/stations/metadata?">https://api.synopticdata.com/v2/stations/metadata?</a> </p>
+     * @return JsonResponse|mixed
+     */
     public function getMesonetApiResultViaCurl() {
 
         $curl = curl_init();
-        $token = Setting::get('token');
-        $queryString = "token={$token}&radius={$this->latitude},{$this->longitude},10&limit=10";
+
+        $query = http_build_query([
+            'token' => Setting::get('mesonet_api_token'),
+            'radius' => $this->latitude . ',' . $this->longitude . ',10',
+            'limit' => 10
+        ]);
 
         try {
             curl_setopt_array($curl, array(
-                CURLOPT_URL => 'https://api.synopticdata.com/v2/stations/metadata?' . $queryString,
+                CURLOPT_URL => 'https://api.synopticdata.com/v2/stations/metadata?' . $query,
                 CURLOPT_RETURNTRANSFER => true,
                 CURLOPT_ENCODING => '',
                 CURLOPT_MAXREDIRS => 10,
@@ -95,9 +113,7 @@ class MesonetApiController extends Controller {
 
     }
 
-
     public function __destruct() {
         // Setting::remove('token');
     }
-
 }

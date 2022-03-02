@@ -1,12 +1,4 @@
 
-https://stackoverflow.com/questions/22414524/how-can-i-make-laravel-return-a-custom-error-for-a-json-rest-api
-
-https://api.synopticdata.com/v2/stations/metadata?token=ce770603a6654e2bb78695214ca6245b&radius=31.520370,74.358749,10&limit=10
-https://api.synopticdata.com/v2/stations/metadata?token=ce770603a6654e2bb78695214ca6245b&radius=31.520370,74.358749,10&limit=10
-
-https://developers.synopticdata.com/mesonet/explorer/
-https://developers.synopticdata.com/mesonet/v2/getting-started/
-
 _______________________________________________________________________________________________________
 +++++++++++++++++++++++++++++ LEARNING RESOURCES | YOUTUBE VIDEOS AND SERIES ++++++++++++++++++++++++++
 -------------------------------------------------------------------------------------------------------
@@ -18,7 +10,7 @@ ________________________________________________________________________________
 ----------------------------- LEARNING RESOURCES | ARTICLES AND BLOGS ----------------------------------
 > https://www.tutsmake.com
 > https://www.laraning.com/
->
+> https://blog.logrocket.com/laravel-passport-a-tutorial-and-example-build/
 
 _________________________________________________________________________________________________________
 _________________________________________________________________________________________________________

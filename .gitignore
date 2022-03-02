@@ -15,6 +15,10 @@ yarn-error.log
 /.idea
 /.vscode
 
+# the folder where i put all the test code, dummy files, and sample files
+/dummyFiles
+
+
 # the helper files generate by barryVDH ide helper composer package
 .phpstorm.meta.php
 _ide_helper.php
