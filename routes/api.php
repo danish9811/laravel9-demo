@@ -17,3 +17,5 @@ Route::get('/get-weather-via-curl', [MesonetApiController::class, 'getMesonetApi
 Route::post('/register', [UserAuthController::class, 'register']);
 Route::post('/login', [UserAuthController::class, 'login']);
 Route::apiResource('/employee', EmployeeController::class)->middleware('auth:api');
+
+

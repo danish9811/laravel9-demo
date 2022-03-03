@@ -12,4 +12,5 @@ class Employee extends Model {
         'name', 'age', 'job', 'salary'
     ];
 
+
 }

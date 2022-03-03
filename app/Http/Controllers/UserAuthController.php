@@ -29,7 +29,6 @@ class UserAuthController extends Controller {
         return response($response, 200);
     }
 
-
     public function login(Request $request) {
         $validator = Validator::make($request->all(), [
             'email' => 'required|string|email|max:255',

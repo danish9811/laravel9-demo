@@ -32,7 +32,6 @@ class MesonetApiController extends Controller {
                     'radius' => $this->latitude . ',' . $this->longitude . ',10'
                 ])
                 , true, 512, JSON_THROW_ON_ERROR);
-
         } catch (Exception $exception) {
             return Response::json([
                 'code' => 400,
@@ -52,13 +51,12 @@ class MesonetApiController extends Controller {
     public function getMesonetApiResultViaOtifCurl() {
         try {
             $response = Curl::Make()
-                ->url('https://api.synopticdta.com/v2/stations/metadata')
+                ->url('https://api.synopticdata.com/v2/stations/metadata')
                 ->params([
                     'token' => Setting::get('mesonet_api_token'),
                     'radius' => $this->latitude . ',' . $this->longitude . ',10'
                 ])
                 ->execute();
-
         } catch (Exception $exception) {
             return Response::json([
                 'code' => 400,
@@ -75,9 +73,9 @@ class MesonetApiController extends Controller {
      * <p>this method will fetch the current weather by hitting api endpoint library with Curl
      * <a href="https://api.synopticdata.com/v2/stations/metadata?">https://api.synopticdata.com/v2/stations/metadata?</a> </p>
      * @return JsonResponse|mixed
+     * @throws \JsonException
      */
     public function getMesonetApiResultViaCurl() {
-
         $curl = curl_init();
 
         $query = http_build_query([
@@ -87,7 +85,7 @@ class MesonetApiController extends Controller {
         ]);
 
         try {
-            curl_setopt_array($curl, array(
+            curl_setopt_array($curl, [
                 CURLOPT_URL => 'https://api.synopticdata.com/v2/stations/metadata?' . $query,
                 CURLOPT_RETURNTRANSFER => true,
                 CURLOPT_ENCODING => '',
@@ -96,10 +94,9 @@ class MesonetApiController extends Controller {
                 CURLOPT_FOLLOWLOCATION => true,
                 CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
                 CURLOPT_CUSTOMREQUEST => 'GET',
-            ));
+            ]);
 
             $response = curl_exec($curl);
-
         } catch (Exception $exception) {
             return Response::json([
                 'code' => 400,
@@ -110,10 +107,6 @@ class MesonetApiController extends Controller {
 
         curl_close($curl);
         return json_decode($response, true, 512, JSON_THROW_ON_ERROR);
-
     }
 
-    public function __destruct() {
-        // Setting::remove('token');
-    }
 }
