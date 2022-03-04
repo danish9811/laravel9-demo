@@ -13,10 +13,14 @@ class MesonetApiController extends Controller {
 
     private string $latitude = '31.520370';
     private string $longitude = '74.358749';
+    private string $mesonetApiToken;
 
     public function __construct() {
         Setting::set('mesonet_api_token', 'ce770603a6654e2bb78695214ca6245b');
     }
+
+
+
 
     /**
      * <b>getMesonetApiResultViaHttp() </b>
