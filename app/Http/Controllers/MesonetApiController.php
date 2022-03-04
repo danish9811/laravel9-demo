@@ -15,12 +15,14 @@ class MesonetApiController extends Controller {
     private string $longitude = '74.358749';
     private string $mesonetApiToken;
 
-    public function __construct() {
-        Setting::set('mesonet_api_token', 'ce770603a6654e2bb78695214ca6245b');
+    private function getToken(): string {
+        if (!isset($this->mesonetApiToken)) {
+            Setting::set('mesonet_api_token', 'ce770603a6654e2bb78695214ca6245b');
+            $this->mesonetApiToken = (string)(Setting::get('mesonet_api_token'));
+            return $this->mesonetApiToken;
+        }
+        return $this->mesonetApiToken;
     }
-
-
-
 
     /**
      * <b>getMesonetApiResultViaHttp() </b>
@@ -32,7 +34,7 @@ class MesonetApiController extends Controller {
         try {
             $response = json_decode(
                 Http::get('https://api.synopticdata.com/v2/stations/metadata?', [
-                    'token' => Setting::get('mesonet_api_token'),
+                    'token' => $this->getToken(),
                     'radius' => $this->latitude . ',' . $this->longitude . ',10'
                 ])
                 , true, 512, JSON_THROW_ON_ERROR);
@@ -57,7 +59,7 @@ class MesonetApiController extends Controller {
             $response = Curl::Make()
                 ->url('https://api.synopticdata.com/v2/stations/metadata')
                 ->params([
-                    'token' => Setting::get('mesonet_api_token'),
+                    'token' => $this->getToken(),
                     'radius' => $this->latitude . ',' . $this->longitude . ',10'
                 ])
                 ->execute();
@@ -83,7 +85,7 @@ class MesonetApiController extends Controller {
         $curl = curl_init();
 
         $query = http_build_query([
-            'token' => Setting::get('mesonet_api_token'),
+            'token' => $this->getToken(),
             'radius' => $this->latitude . ',' . $this->longitude . ',10',
             'limit' => 10
         ]);

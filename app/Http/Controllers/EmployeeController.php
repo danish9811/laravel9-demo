@@ -25,7 +25,7 @@ class EmployeeController extends Controller {
         $employee = Employee::create($data);
 
         return response([
-            'message' => 'Successfully stored the details ' . $employee->name
+            'message' => 'Successfully stored the details of ' . $employee->name
         ], 200);
     }
 
@@ -62,13 +62,8 @@ class EmployeeController extends Controller {
             ], 200);
         }
         return response()->json([
-            'message' => 'employee with an id = ' . $id . ' does not exit'], 404);
+            'message' => 'employee with an id = ' . $id . ' does not exit'
+        ], 404);
     }
 
-    public function destroy_old(Employee $employee) {
-        $employee->delete();
-        return response([
-            'message' => 'Employee ' . $employee->name . ' deleted'
-        ]);
-    }
 }
