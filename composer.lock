@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "b80e1429d3f7c88a693233822a7bfffc",
+    "content-hash": "af1fc17ab1862065a819549081b464d3",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -2650,6 +2650,50 @@
                 "source": "https://github.com/otifsolutions/curl-handler/tree/v1.0.0"
             },
             "time": "2021-04-01T08:55:24+00:00"
+        },
+        {
+            "name": "otifsolutions/laravel-forcessl",
+            "version": "1.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/otifsolutions/laravel-forcessl.git",
+                "reference": "e5a40207d09a5a63a0324beee5c135b43d66b6e6"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/otifsolutions/laravel-forcessl/zipball/e5a40207d09a5a63a0324beee5c135b43d66b6e6",
+                "reference": "e5a40207d09a5a63a0324beee5c135b43d66b6e6",
+                "shasum": ""
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "OTIFSolutions\\ForceSSL\\ForceSSLServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "OTIFSolutions\\ForceSSL\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "OTIF Solutions",
+                    "email": "contact@otif-solutions.com"
+                }
+            ],
+            "description": "this package will make the routes or url to work with ssl",
+            "support": {
+                "issues": "https://github.com/otifsolutions/laravel-forcessl/issues",
+                "source": "https://github.com/otifsolutions/laravel-forcessl/tree/1.0.0"
+            },
+            "time": "2020-10-06T09:48:19+00:00"
         },
         {
             "name": "otifsolutions/laravel-settings",
@@ -9416,7 +9460,8 @@
     "platform": {
         "php": "^8.0",
         "ext-curl": "*",
-        "ext-json": "*"
+        "ext-json": "*",
+        "ext-readline": "*"
     },
     "platform-dev": [],
     "plugin-api-version": "2.2.0"

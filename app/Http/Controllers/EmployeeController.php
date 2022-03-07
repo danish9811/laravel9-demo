@@ -24,7 +24,7 @@ class EmployeeController extends Controller {
 
         $employee = Employee::create($data);
 
-        return response([
+        return response()->json([
             'message' => 'Successfully stored the details of ' . $employee->name
         ], 200);
     }
@@ -65,5 +65,4 @@ class EmployeeController extends Controller {
             'message' => 'employee with an id = ' . $id . ' does not exit'
         ], 404);
     }
-
 }

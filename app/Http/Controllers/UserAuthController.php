@@ -18,15 +18,20 @@ class UserAuthController extends Controller {
         ]);
 
         if ($validator->fails()) {
-            return response(['errors' => $validator->errors()->all()], 422);
+            return response()->json([
+                'errors' => $validator->errors()->all()
+            ], 422);
         }
 
         $request['password'] = Hash::make($request['password']);
         $request['remember_token'] = Str::random(10);
         $user = User::create($request->toArray());
         $token = $user->createToken('API Token')->accessToken;
-        $response = ['token' => $token];
-        return response($response, 200);
+
+        return response()->json([
+            'message' => 'User registered successfully',
+            'token' => $token
+        ], 200);
     }
 
     public function login(Request $request) {
@@ -45,13 +50,13 @@ class UserAuthController extends Controller {
 
         if ($user) {
             if (Hash::check($request->password, $user->password)) {
-                return response([
+                return response()->json([
                     'token' => $user->createToken('API Token')->accessToken
                 ], 200);
             }
-            return response(["message" => "Password mismatch"], 422);
+            return response()->json(["message" => "Password mismatch"], 422);
         }
-        return response($response = ["message" => 'User does not exist'], 422);
+        return response()->json($response = ["message" => 'User does not exist'], 422);
     }
 
 }

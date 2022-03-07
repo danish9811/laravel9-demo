@@ -5,7 +5,5 @@
 
 @section('main-container')
 
-
-
 @endsection
 

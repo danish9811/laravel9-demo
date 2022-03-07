@@ -7,12 +7,11 @@ use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\Http;
 use OTIFSolutions\CurlHandler\Curl;
 use OTIFSolutions\Laravel\Settings\Models\Setting;
-use Response;
 
 class MesonetApiController extends Controller {
 
-    private string $latitude = '31.520370';
-    private string $longitude = '74.358749';
+    private $latitude = '31.520370';
+    private $longitude = '74.358749';
 
     private function getToken(): string {
         $tempVar = Setting::get('mesonet_api_token');
@@ -38,7 +37,7 @@ class MesonetApiController extends Controller {
                 ])
                 , true, 512, JSON_THROW_ON_ERROR);
         } catch (Exception $exception) {
-            return Response::json([
+            return response()->json([
                 'code' => 400,
                 'message' => 'Error fetching weather',
                 'description' => $exception->getMessage()
@@ -63,7 +62,7 @@ class MesonetApiController extends Controller {
                 ])
                 ->execute();
         } catch (Exception $exception) {
-            return Response::json([
+            return response()->json([
                 'code' => 400,
                 'message' => 'error fetching weather',
                 'description' => $exception->getMessage()
@@ -103,7 +102,7 @@ class MesonetApiController extends Controller {
 
             $response = curl_exec($curl);
         } catch (Exception $exception) {
-            return Response::json([
+            return response()->json([
                 'code' => 400,
                 'message' => 'Error fetching weather',
                 'description' => $exception->getMessage()
