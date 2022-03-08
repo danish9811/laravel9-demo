@@ -59,4 +59,6 @@ class UserAuthController extends Controller {
         return response()->json($response = ["message" => 'User does not exist'], 422);
     }
 
+
+
 }

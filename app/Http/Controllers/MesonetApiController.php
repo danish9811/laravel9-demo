@@ -10,17 +10,9 @@ use OTIFSolutions\Laravel\Settings\Models\Setting;
 
 class MesonetApiController extends Controller {
 
-    private $latitude = '31.520370';
-    private $longitude = '74.358749';
+    private string $latitude = '31.520370';
+    private string $longitude = '74.358749';
 
-    private function getToken(): string {
-        $tempVar = Setting::get('mesonet_api_token');
-        if (!$tempVar) {
-            $tempVar = 'ce770603a6654e2bb78695214ca6245b';
-            Setting::set('mesonet_api_token', $tempVar);
-        }
-        return $tempVar;
-    }
 
     /**
      * <b>getMesonetApiResultViaHttp() </b>
@@ -32,16 +24,15 @@ class MesonetApiController extends Controller {
         try {
             $response = json_decode(
                 Http::get('https://api.synopticdata.com/v2/stations/metadata?', [
-                    'token' => $this->getToken(),
+                    'token' => Setting::get('mesonet_api_token'),
                     'radius' => $this->latitude . ',' . $this->longitude . ',10'
                 ])
                 , true, 512, JSON_THROW_ON_ERROR);
         } catch (Exception $exception) {
             return response()->json([
-                'code' => 400,
                 'message' => 'Error fetching weather',
                 'description' => $exception->getMessage()
-            ]);
+            ], 400);
         }
         return $response;
     }
@@ -57,16 +48,15 @@ class MesonetApiController extends Controller {
             $response = Curl::Make()
                 ->url('https://api.synopticdata.com/v2/stations/metadata')
                 ->params([
-                    'token' => $this->getToken(),
+                    'token' => Setting::get('mesonet_api_token'),
                     'radius' => $this->latitude . ',' . $this->longitude . ',10'
                 ])
                 ->execute();
         } catch (Exception $exception) {
             return response()->json([
-                'code' => 400,
                 'message' => 'error fetching weather',
                 'description' => $exception->getMessage()
-            ]);
+            ], 400);
         }
 
         return $response;
@@ -76,21 +66,24 @@ class MesonetApiController extends Controller {
      * <b>getMesonetApiResultViaOtifCurl() </b>
      * <p>this method will fetch the current weather by hitting api endpoint library with Curl
      * <a href="https://api.synopticdata.com/v2/stations/metadata?">https://api.synopticdata.com/v2/stations/metadata?</a> </p>
-     * @return JsonResponse|mixed
-     * @throws \JsonException
+     * @return JsonResponse
      */
-    public function getMesonetApiResultViaCurl() {
-        $curl = curl_init();
+    public function getMesonetApiResultViaCurl(): JsonResponse {
+        // $this->paramCheck();
 
-        $query = http_build_query([
-            'token' => $this->getToken(),
-            'radius' => $this->latitude . ',' . $this->longitude . ',10',
-            'limit' => 10
-        ]);
+        // todo : handle errors here, the response must be in json
+
+        $curl = curl_init();
 
         try {
             curl_setopt_array($curl, [
-                CURLOPT_URL => 'https://api.synopticdata.com/v2/stations/metadata?' . $query,
+
+                CURLOPT_URL => 'https://api.synopticdata.com/v2/stations/metadata?' . http_build_query([
+                        'token' => Setting::get('mesonet_api_token'),
+                        'radius' => $this->latitude . ',' . $this->longitude . ',10',
+                        'limit' => 10
+                    ]),
+
                 CURLOPT_RETURNTRANSFER => true,
                 CURLOPT_ENCODING => '',
                 CURLOPT_MAXREDIRS => 10,
@@ -103,14 +96,25 @@ class MesonetApiController extends Controller {
             $response = curl_exec($curl);
         } catch (Exception $exception) {
             return response()->json([
-                'code' => 400,
                 'message' => 'Error fetching weather',
                 'description' => $exception->getMessage()
-            ]);
+            ], 400);
         }
 
         curl_close($curl);
-        return json_decode($response, true, 512, JSON_THROW_ON_ERROR);
+
+        // return response($response, 512, true, JSON_THROW_ON_ERROR);
+         return response()->json($response, 200);
+    }
+
+    private function paramCheck() {
+        if (!$this->latitude && $this->longitude && isset($this->getToken)) {
+            return response()->json([
+                'message' => 'the parameters are not set',
+                'description' => 'ensure that some of the parameters in the query string are valid'
+            ], 400);
+        }
+        return true;
     }
 
 }

@@ -5,15 +5,20 @@ namespace App\Http\Controllers;
 use App\Models\Employee;
 use Illuminate\Http\Request;
 
+// todo : this controller and actions must also be under the passport and auth and token
+
+// use exception handling here, return response into json too for all of these API responses,
 class EmployeeController extends Controller {
 
+    // handle response too
     public function index() {
-        return response([
+        return response()->json([
             'employees' => Employee::all(),
             'message' => 'Successful'
         ], 200);
     }
 
+    // handle response too
     public function store(Request $request) {
         $data = $request->validate([
             'name' => 'required|max:30',
@@ -29,6 +34,7 @@ class EmployeeController extends Controller {
         ], 200);
     }
 
+    // handle response too
     public function show($id) {
         if (Employee::firstWhere('id', '=', $id)) {
             return response()->json([
@@ -42,6 +48,7 @@ class EmployeeController extends Controller {
         ], 404);
     }
 
+    // handle response too
     public function update(Request $request, $id) {
         if (Employee::firstWhere('id', '=', $id)) {
             Employee::find($id)->update($request->all());
@@ -49,11 +56,13 @@ class EmployeeController extends Controller {
                 'messsage' => 'record edited successfully',
             ], 200);
         }
+
         return response()->json([
             'message' => 'record with an id = ' . $id . ' not found'
         ], 404);
     }
 
+    // handle response too
     public function destroy($id) {
         if (Employee::firstWhere('id', '=', $id)) {
             Employee::find($id)->delete();
@@ -65,4 +74,5 @@ class EmployeeController extends Controller {
             'message' => 'employee with an id = ' . $id . ' does not exit'
         ], 404);
     }
+
 }
