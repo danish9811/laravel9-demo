@@ -1,5 +1,4 @@
 
-<!-- only the head tag | and css include the end -->
 <base href="">
 
 <meta charset="utf-8"/>
@@ -18,5 +17,4 @@
 <link rel="canonical" href="https://preview.keenthemes.com/metronic8"/>
 <link rel="shortcut icon" href="{{ asset('media/logos/favicon.ico') }}"/>
 
-<!-- css added here -->
-@include('layout.css')
+

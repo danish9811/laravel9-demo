@@ -13,14 +13,13 @@ class MesonetApiController extends Controller {
     private string $latitude = '31.520370';
     private string $longitude = '74.358749';
 
-
     /**
      * <b>getMesonetApiResultViaHttp() </b>
      * <p>this method will fetch the current weather by hitting api endpoint with HTTP Method
      * <a href="https://api.synopticdata.com/v2/stations/metadata?">https://api.synopticdata.com/v2/stations/metadata?</a> </p>
-     * @return JsonResponse|mixed
+     * @return JsonResponse
      */
-    public function getMesonetApiResultViaHttp() {
+    public function getMesonetApiResultViaHttp(): JsonResponse {
         try {
             $response = json_decode(
                 Http::get('https://api.synopticdata.com/v2/stations/metadata?', [
@@ -41,17 +40,17 @@ class MesonetApiController extends Controller {
      * <b>getMesonetApiResultViaOtifCurl()</b>
      * <p>this method will fetch the current weather by hitting api endpoint library with Otif Curl library
      * <a href="https://api.synopticdata.com/v2/stations/metadata?">https://api.synopticdata.com/v2/stations/metadata?</a> </p>
-     * @return JsonResponse|mixed
+     * @return JsonResponse
      */
-    public function getMesonetApiResultViaOtifCurl() {
+    public function getMesonetApiResultViaOtifCurl(): JsonResponse {
         try {
-            $response = Curl::Make()
+            $response = json_decode(Curl::Make()
                 ->url('https://api.synopticdata.com/v2/stations/metadata')
                 ->params([
                     'token' => Setting::get('mesonet_api_token'),
                     'radius' => $this->latitude . ',' . $this->longitude . ',10'
                 ])
-                ->execute();
+                ->execute(), true, 512, JSON_THROW_ON_ERROR);
         } catch (Exception $exception) {
             return response()->json([
                 'message' => 'error fetching weather',
@@ -69,10 +68,6 @@ class MesonetApiController extends Controller {
      * @return JsonResponse
      */
     public function getMesonetApiResultViaCurl(): JsonResponse {
-        // $this->paramCheck();
-
-        // todo : handle errors here, the response must be in json
-
         $curl = curl_init();
 
         try {
@@ -93,7 +88,7 @@ class MesonetApiController extends Controller {
                 CURLOPT_CUSTOMREQUEST => 'GET',
             ]);
 
-            $response = curl_exec($curl);
+            $response = json_decode(curl_exec($curl), true, 512, JSON_THROW_ON_ERROR);
         } catch (Exception $exception) {
             return response()->json([
                 'message' => 'Error fetching weather',
@@ -103,18 +98,8 @@ class MesonetApiController extends Controller {
 
         curl_close($curl);
 
-        // return response($response, 512, true, JSON_THROW_ON_ERROR);
-         return response()->json($response, 200);
-    }
+        return $response;
 
-    private function paramCheck() {
-        if (!$this->latitude && $this->longitude && isset($this->getToken)) {
-            return response()->json([
-                'message' => 'the parameters are not set',
-                'description' => 'ensure that some of the parameters in the query string are valid'
-            ], 400);
-        }
-        return true;
     }
 
 }

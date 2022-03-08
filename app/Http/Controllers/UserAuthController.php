@@ -26,6 +26,10 @@ class UserAuthController extends Controller {
         $request['password'] = Hash::make($request['password']);
         $request['remember_token'] = Str::random(10);
         $user = User::create($request->toArray());
+
+        // this is not the right way of generating token, this is personal access token, 
+        // we have to use password grant token, and that's method is different
+        // https://laravel.com/docs/9.x/passport#password-grant-tokens
         $token = $user->createToken('API Token')->accessToken;
 
         return response()->json([
@@ -34,6 +38,8 @@ class UserAuthController extends Controller {
         ], 200);
     }
 
+
+    // we can use the login method inside of the register method too, to avoid code duplication
     public function login(Request $request) {
         $validator = Validator::make($request->all(), [
             'email' => 'required|string|email|max:255',
@@ -51,6 +57,7 @@ class UserAuthController extends Controller {
         if ($user) {
             if (Hash::check($request->password, $user->password)) {
                 return response()->json([
+                    // this is not the right way of creating access tokens, this is personal access token, but we have to use the password grant client token
                     'token' => $user->createToken('API Token')->accessToken
                 ], 200);
             }
@@ -58,6 +65,7 @@ class UserAuthController extends Controller {
         }
         return response()->json($response = ["message" => 'User does not exist'], 422);
     }
+
 
 
 
