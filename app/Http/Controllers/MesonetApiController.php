@@ -10,21 +10,18 @@ use OTIFSolutions\Laravel\Settings\Models\Setting;
 
 class MesonetApiController extends Controller {
 
-    private string $latitude = '31.520370';
-    private string $longitude = '74.358749';
-
     /**
      * <b>getMesonetApiResultViaHttp() </b>
      * <p>this method will fetch the current weather by hitting api endpoint with HTTP Method
      * <a href="https://api.synopticdata.com/v2/stations/metadata?">https://api.synopticdata.com/v2/stations/metadata?</a> </p>
      * @return JsonResponse
      */
-    public function getMesonetApiResultViaHttp(): JsonResponse {
+    public function getMesonetApiResultViaHttp() {
         try {
             $response = json_decode(
                 Http::get('https://api.synopticdata.com/v2/stations/metadata?', [
                     'token' => Setting::get('mesonet_api_token'),
-                    'radius' => $this->latitude . ',' . $this->longitude . ',10'
+                    'radius' => Setting::get('location_radius')
                 ])
                 , true, 512, JSON_THROW_ON_ERROR);
         } catch (Exception $exception) {
@@ -42,13 +39,13 @@ class MesonetApiController extends Controller {
      * <a href="https://api.synopticdata.com/v2/stations/metadata?">https://api.synopticdata.com/v2/stations/metadata?</a> </p>
      * @return JsonResponse
      */
-    public function getMesonetApiResultViaOtifCurl(): JsonResponse {
+    public function getMesonetApiResultViaOtifCurl() {
         try {
             $response = json_decode(Curl::Make()
                 ->url('https://api.synopticdata.com/v2/stations/metadata')
                 ->params([
                     'token' => Setting::get('mesonet_api_token'),
-                    'radius' => $this->latitude . ',' . $this->longitude . ',10'
+                    'radius' => Setting::get('location_radius')
                 ])
                 ->execute(), true, 512, JSON_THROW_ON_ERROR);
         } catch (Exception $exception) {
@@ -67,16 +64,14 @@ class MesonetApiController extends Controller {
      * <a href="https://api.synopticdata.com/v2/stations/metadata?">https://api.synopticdata.com/v2/stations/metadata?</a> </p>
      * @return JsonResponse
      */
-    public function getMesonetApiResultViaCurl(): JsonResponse {
+    public function getMesonetApiResultViaCurl() {
         $curl = curl_init();
 
         try {
             curl_setopt_array($curl, [
-
                 CURLOPT_URL => 'https://api.synopticdata.com/v2/stations/metadata?' . http_build_query([
                         'token' => Setting::get('mesonet_api_token'),
-                        'radius' => $this->latitude . ',' . $this->longitude . ',10',
-                        'limit' => 10
+                        'radis' => Setting::get('location_radius')
                     ]),
 
                 CURLOPT_RETURNTRANSFER => true,
@@ -97,9 +92,6 @@ class MesonetApiController extends Controller {
         }
 
         curl_close($curl);
-
         return $response;
-
     }
-
 }

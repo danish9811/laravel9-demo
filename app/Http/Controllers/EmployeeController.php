@@ -3,22 +3,28 @@
 namespace App\Http\Controllers;
 
 use App\Models\Employee;
+use Exception;
 use Illuminate\Http\Request;
 
-// todo : this controller and actions must also be under the passport and auth and token
-
-// use exception handling here, return response into json too for all of these API responses,
 class EmployeeController extends Controller {
 
-    // handle response too
     public function index() {
+        try {
+            $response = json_decode(Employee::all(), true, 512, JSON_THROW_ON_ERROR);
+        } catch (Exception $exception) {
+            return response()->json([
+                'exceptionCode' => (int)$exception->getCode(),
+                'message' => 'Error Fetching Employee Recoords',
+                'description' => $exception->getMessage()
+            ], 422);
+        }
+
         return response()->json([
-            'employees' => Employee::all(),
-            'message' => 'Successful'
+            'message' => 'Got the employees data successfully',
+            'data' => $response
         ], 200);
     }
 
-    // handle response too
     public function store(Request $request) {
         $data = $request->validate([
             'name' => 'required|max:30',
@@ -34,24 +40,22 @@ class EmployeeController extends Controller {
         ], 200);
     }
 
-    // handle response too
     public function show($id) {
         if (Employee::firstWhere('id', '=', $id)) {
             return response()->json([
-                'employee' => Employee::firstWhere('id', $id),
+                'data' => Employee::firstWhere('id', $id),
                 'message' => 'Success'
             ], 200);
         }
 
         return response()->json([
-            'message' => 'record with an id = ' . $id . ' not found'
+            'message' => 'Record with an ID=' . $id . ' does not exist'
         ], 404);
     }
 
-    // handle response too
     public function update(Request $request, $id) {
         if (Employee::firstWhere('id', '=', $id)) {
-            Employee::find($id)->update($request->all());
+            Employee::where('id', $id)->update($request->all());
             return response()->json([
                 'messsage' => 'record edited successfully',
             ], 200);
@@ -62,16 +66,15 @@ class EmployeeController extends Controller {
         ], 404);
     }
 
-    // handle response too
     public function destroy($id) {
         if (Employee::firstWhere('id', '=', $id)) {
-            Employee::find($id)->delete();
+            Employee::destroy($id);
             return response()->json([
-                'message' => 'Employee with an id = ' . $id . ' deleted',
+                'message' => 'Employee with an id=' . $id . ' deleted',
             ], 200);
         }
         return response()->json([
-            'message' => 'employee with an id = ' . $id . ' does not exit'
+            'message' => 'Employee with an id=' . $id . ' does not exit'
         ], 404);
     }
 

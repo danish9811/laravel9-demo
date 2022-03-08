@@ -11,6 +11,7 @@ use Illuminate\Support\Str;
 class UserAuthController extends Controller {
 
     public function register(Request $request) {
+
         $validator = Validator::make($request->all(), [
             'name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users',
@@ -38,7 +39,6 @@ class UserAuthController extends Controller {
         ], 200);
     }
 
-
     // we can use the login method inside of the register method too, to avoid code duplication
     public function login(Request $request) {
         $validator = Validator::make($request->all(), [
@@ -65,8 +65,5 @@ class UserAuthController extends Controller {
         }
         return response()->json($response = ["message" => 'User does not exist'], 422);
     }
-
-
-
 
 }
