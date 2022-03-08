@@ -19,15 +19,13 @@ class EmployeeController extends Controller {
             ], 422);
         }
 
-        return response()->json([
-            'message' => 'Got the employees data successfully',
-            'data' => $response
-        ], 200);
+        return response($response, 200);
     }
 
+    // todo => this method is not working, check this tomorrow 127.0.0.1/api/employee by post request
     public function store(Request $request) {
         $data = $request->validate([
-            'name' => 'required|max:30',
+            'name' => 'required|max:30|min:4',
             'age' => 'required|max:30',
             'job' => 'required|max:30',
             'salary' => 'required|max:30'
@@ -35,21 +33,16 @@ class EmployeeController extends Controller {
 
         $employee = Employee::create($data);
 
-        return response()->json([
-            'message' => 'Successfully stored the details of ' . $employee->name
-        ], 200);
+        return response()->json($employee, 200);
     }
 
     public function show($id) {
         if (Employee::firstWhere('id', '=', $id)) {
-            return response()->json([
-                'data' => Employee::firstWhere('id', $id),
-                'message' => 'Success'
-            ], 200);
+            return response()->json(Employee::firstWhere('id', $id), 200);
         }
 
         return response()->json([
-            'message' => 'Record with an ID=' . $id . ' does not exist'
+            'message' => 'Record with an id=' . $id . ' does not exist'
         ], 404);
     }
 
