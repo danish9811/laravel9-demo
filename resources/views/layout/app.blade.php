@@ -5,6 +5,7 @@
   <title>@yield('title')</title>
   @include('layout.head')
   @include('layout.css')
+  @yield('stylesheets')
 </head>
 
 <body id="kt_body"
@@ -19,6 +20,7 @@
 
       @include('layout.header')
 
+      <!-- main::container here -->
       @yield('main-container')
 
       <div class="content d-flex flex-column flex-column-fluid" id="kt_content">
@@ -39,6 +41,8 @@
 
 @include('layout.footer')
 @include('layout.js')
+
+
 
 </body>
 </html>

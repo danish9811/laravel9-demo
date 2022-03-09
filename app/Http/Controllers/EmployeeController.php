@@ -22,18 +22,22 @@ class EmployeeController extends Controller {
         return response($response, 200);
     }
 
-    // todo => this method is not working, check this tomorrow 127.0.0.1/api/employee by post request
-    public function store(Request $request) {
 
-        $employee = Employee::create($request->validate([
+    public function store(Request $request) {
+        
+        $data = $request->validate([
             'name' => 'required|max:30|min:4',
             'age' => 'required|max:30',
             'job' => 'required|max:30',
             'salary' => 'required|max:30'
-        ]));
+        ]);
+
+        $employee = Employee::create($data);
 
         return response()->json($employee, 200);
     }
+
+
 
     public function show($id) {
         if (Employee::firstWhere('id', '=', $id)) {

@@ -10,10 +10,10 @@
     <!--begin::Menu-->
     <ul class="menu menu-gray-600 menu-hover-primary fw-bold order-1">
       <li class="menu-item">
-        <a href="{{ url('/dashboard/about') }}" target="_blank" class="menu-link px-2">About</a>
+        <a href="{{ url('/about') }}" target="_blank" class="menu-link px-2">About</a>
       </li>
       <li class="menu-item">
-        <a href="{{ url('/dashboard/support') }}" target="_blank" class="menu-link px-2">Support</a>
+        <a href="{{ url('/support') }}" target="_blank" class="menu-link px-2">Support</a>
       </li>
     </ul>
     <!--end::Menu-->
