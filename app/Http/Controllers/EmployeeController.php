@@ -24,14 +24,13 @@ class EmployeeController extends Controller {
 
     // todo => this method is not working, check this tomorrow 127.0.0.1/api/employee by post request
     public function store(Request $request) {
-        $data = $request->validate([
+
+        $employee = Employee::create($request->validate([
             'name' => 'required|max:30|min:4',
             'age' => 'required|max:30',
             'job' => 'required|max:30',
             'salary' => 'required|max:30'
-        ]);
-
-        $employee = Employee::create($data);
+        ]));
 
         return response()->json($employee, 200);
     }

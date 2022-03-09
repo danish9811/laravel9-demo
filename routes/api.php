@@ -18,4 +18,5 @@ Route::post('/register', [UserAuthController::class, 'register']);
 Route::post('/login', [UserAuthController::class, 'login']);
 Route::apiResource('/employee', EmployeeController::class)->middleware('auth:api');
 
+
 // Route::resource('/employee', EmployeeController::class)->middleware('auth:api');

@@ -19,7 +19,7 @@ class MesonetApiController extends Controller {
     public function getMesonetApiResultViaHttp() {
         try {
             $response = json_decode(
-                Http::get('https://api.synopticdata.com/v2/stations/metadata?', [
+                Http::get(env('MESONET_API_URL'), [
                     'token' => Setting::get('mesonet_api_token'),
                     'radius' => Setting::get('location_radius')
                 ])
@@ -42,7 +42,7 @@ class MesonetApiController extends Controller {
     public function getMesonetApiResultViaOtifCurl() {
         try {
             $response = json_decode(Curl::Make()
-                ->url('https://api.synopticdata.com/v2/stations/metadata')
+                ->url(env('MESONET_API_URL'))
                 ->params([
                     'token' => Setting::get('mesonet_api_token'),
                     'radius' => Setting::get('location_radius')
@@ -54,7 +54,6 @@ class MesonetApiController extends Controller {
                 'description' => $exception->getMessage()
             ], 400);
         }
-
         return $response;
     }
 
@@ -69,7 +68,7 @@ class MesonetApiController extends Controller {
 
         try {
             curl_setopt_array($curl, [
-                CURLOPT_URL => 'https://api.synopticdata.com/v2/stations/metadata?' . http_build_query([
+                CURLOPT_URL => env('MESONET_API_URL') . http_build_query([
                         'token' => Setting::get('mesonet_api_token'),
                         'radis' => Setting::get('location_radius')
                     ]),
