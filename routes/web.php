@@ -9,5 +9,7 @@ Route::get('dashboard', static function () {
     return view('dashboard');
 });
 
-
 Route::get('/users', [TableUsersController::class, 'index']);
+
+
+
