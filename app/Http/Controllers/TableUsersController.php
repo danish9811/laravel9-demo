@@ -12,7 +12,6 @@ class TableUsersController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function index() {
-        // return view('demoUsers', ['users' => TableUsers::all()]);
         return view('datatable', ['users' => TableUsers::all()]);
     }
 

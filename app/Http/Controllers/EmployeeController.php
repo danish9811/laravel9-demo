@@ -19,12 +19,11 @@ class EmployeeController extends Controller {
             ], 422);
         }
 
-        return response($response, 200);
+        return response($response);
     }
 
 
     public function store(Request $request) {
-        
         $data = $request->validate([
             'name' => 'required|max:30|min:4',
             'age' => 'required|max:30',
@@ -33,11 +32,8 @@ class EmployeeController extends Controller {
         ]);
 
         $employee = Employee::create($data);
-
-        return response()->json($employee, 200);
+        return response()->json($employee);
     }
-
-
 
     public function show($id) {
         if (Employee::firstWhere('id', '=', $id)) {
@@ -54,7 +50,7 @@ class EmployeeController extends Controller {
             Employee::where('id', $id)->update($request->all());
             return response()->json([
                 'messsage' => 'record edited successfully',
-            ], 200);
+            ]);
         }
 
         return response()->json([
@@ -67,7 +63,7 @@ class EmployeeController extends Controller {
             Employee::destroy($id);
             return response()->json([
                 'message' => 'Employee with an id=' . $id . ' deleted',
-            ], 200);
+            ]);
         }
         return response()->json([
             'message' => 'Employee with an id=' . $id . ' does not exit'

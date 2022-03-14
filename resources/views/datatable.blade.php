@@ -1,7 +1,7 @@
 @extends('layout.app')
 
-@section('title', 'Metronic - the world\'s #1 selling Bootstrap Admin Theme Ecosystem for HTML, Vue, React, Angular &amp; Laravel by Keenthemes')
-@section('page_name', 'Datatable')
+@section('title', 'Datatables')
+@section('page_name', 'Datatables')
 
 <!-- jQuery datatable stylesheets -->
 @section('stylesheets')
@@ -11,46 +11,67 @@
 <!-- main container starts -->
 @section('main-container')
 
-  <!-- table::start -->
-  <table id="example" class="display" style="width:100%">
+  <div id="kt_post" class="post d-flex flex-column-fluid">
 
-    <!-- table heading -->
-    <thead>
-    <tr>
-      <th>id</th>
-      <th>name</th>
-      <th>position</th>
-      <th>office</th>
-      <th>age</th>
-    </tr>
-    </thead>
+    <div class="card">
+      <div class="card-body">
+        <div class="card-px text-center pt-15 pb-15">
 
-    <!-- table body -->
-    <tbody>
-    @foreach ($users as $record)
-      <tr>
-        <td>{{ $record['id'] }}</td>
-        <td>{{ $record['name'] }}</td>
-        <td>{{ $record['position'] }}</td>
-        <td>{{ $record['office'] }}</td>
-        <td>{{ $record['age'] }}</td>
-      </tr>
-    @endforeach
-    </tbody>
+          <!-- datatable::start -->
+          <table id="example" class="display" style="width:100%">
 
-    <!-- table footer -->
-    <tfoot>
-    <tr>
-      <th>id</th>
-      <th>name</th>
-      <th>positon</th>
-      <th>office</th>
-      <th>age</th>
-    </tr>
-    </tfoot>
+            <!-- table heading -->
+            <thead>
+            <tr>
+              <th>id</th>
+              <th>name</th>
+              <th>position</th>
+              <th>office</th>
+              <th>age</th>
+              <th>actions</th>
+            </tr>
+            </thead>
 
-  </table>
-  <!-- table::ends -->
+            <!-- table body -->
+            <tbody>
+            @foreach ($users as $record)
+              <tr>
+                <td>{{ $record['id'] }}</td>
+                <td>{{ $record['name'] }}</td>
+                <td>{{ $record['position'] }}</td>
+                <td>{{ $record['office'] }}</td>
+                <td>{{ $record['age'] }}</td>
+                <td>
+                  <a href="#">(Edit)</a>
+                  <a href="#">(Delete)</a>
+                </td>
+              </tr>
+            @endforeach
+            </tbody>
+
+            <!-- table footer -->
+            <tfoot>
+            <tr>
+              <th>id</th>
+              <th>name</th>
+              <th>positon</th>
+              <th>office</th>
+              <th>age</th>
+              <th>actions</th>
+            </tr>
+            </tfoot>
+
+          </table>
+          <!-- datatable::ends -->
+
+
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+
 
 @endsection
 <!-- main::container ends -->

@@ -65,7 +65,6 @@ class MesonetApiController extends Controller {
      */
     public function getMesonetApiResultViaCurl() {
         $curl = curl_init();
-
         try {
             curl_setopt_array($curl, [
                 CURLOPT_URL => env('MESONET_API_URL') . http_build_query([

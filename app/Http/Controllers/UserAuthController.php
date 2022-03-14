@@ -35,8 +35,11 @@ class UserAuthController extends Controller {
         return response()->json([
             'message' => 'User registered successfully',
             'token' => $token
-        ], 200);
+        ]);
     }
+
+
+
 
     // we can use the login method inside of the register method too, to avoid code duplication
     public function login(Request $request) {
@@ -58,7 +61,7 @@ class UserAuthController extends Controller {
                 return response()->json([
                     // this is not the right way of creating access tokens, this is personal access token, but we have to use the password grant client token
                     'token' => $user->createToken('API Token')->accessToken
-                ], 200);
+                ]);
             }
             return response()->json(["message" => "Password mismatch"], 422);
         }
