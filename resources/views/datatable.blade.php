@@ -18,7 +18,7 @@
         <div class="card-px text-center pt-15 pb-15">
 
           <!-- datatable::start -->
-          <table id="example" class="display" style="width:100%">
+          <table id="example" class="display" style="width:80%">
 
             <!-- table heading -->
             <thead>
