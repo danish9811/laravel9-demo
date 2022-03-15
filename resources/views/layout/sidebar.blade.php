@@ -101,36 +101,9 @@
                     <span class="menu-title">Tickets List</span>
                   </a>
                 </div>
+              </div>
+            </div>
 
-              </div>
-            </div>
-            <div data-kt-menu-trigger="click" class="menu-item menu-accordion mb-1">
-							<span class="menu-link">
-								<span class="menu-bullet">
-									<span class="bullet bullet-dot"></span>
-								</span>
-								<span class="menu-title">Tutorials</span>
-								<span class="menu-arrow"></span>
-							</span>
-              <div class="menu-sub menu-sub-accordion">
-                <div class="menu-item">
-                  <a class="menu-link" href="../../demo1/dist/apps/support-center/tutorials/list.html">
-										<span class="menu-bullet">
-											<span class="bullet bullet-dot"></span>
-										</span>
-                    <span class="menu-title">Tutorials List</span>
-                  </a>
-                </div>
-                <div class="menu-item">
-                  <a class="menu-link" href="../../demo1/dist/apps/support-center/tutorials/post.html">
-										<span class="menu-bullet">
-											<span class="bullet bullet-dot"></span>
-										</span>
-                    <span class="menu-title">Tutorial Post</span>
-                  </a>
-                </div>
-              </div>
-            </div>
             <div class="menu-item">
               <a class="menu-link" href="../../demo1/dist/apps/support-center/contact.html">
 								<span class="menu-bullet">

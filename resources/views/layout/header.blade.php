@@ -185,9 +185,7 @@
               <a href="../../demo1/dist/authentication/flows/basic/sign-in.html" class="menu-link px-5">Sign Out</a>
             </div>
             <!--end::Menu item-->
-            <!--begin::Menu separator-->
-            <div class="separator my-2"></div>
-            <!--end::Menu separator-->
+
           </div>
           <!--end::User account menu-->
           <!--end::Menu wrapper-->

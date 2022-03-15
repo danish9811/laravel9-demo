@@ -17,4 +17,5 @@
 <link rel="canonical" href="https://preview.keenthemes.com/metronic8"/>
 <link rel="shortcut icon" href="{{ asset('media/logos/favicon.ico') }}"/>
 
+<meta name="csrf-token" content="{{ csrf_token() }}" />
 

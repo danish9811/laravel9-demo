@@ -9,19 +9,25 @@
 @endsection
 
 @section('main-container')
+
+  {{--  @if($errors->any())--}}
+  {{--    {!! implode('', $errors->all('<div>:message</div>')) !!}--}}
+  {{--  @endif--}}
+  {{--  --}}
+
   <div class="card m-auto">
     <div class="card-body">
       <div class="row gy-5 g-xl-8">
         <div class="col-xl-12">
-          <div class="card card-xl-stretch mb-5 mb-xl-8" style="width: 80%;">
+          <div class="card card-xl-stretch mb-5 mb-xl-8" style="width: 100%;">
 
             <!--begin::Header-->
             <div class="card-header border-0 pt-5">
               <h3 class="card-title align-items-start flex-column">
-{{--                <span class="card-label fw-bolder fs-3 mb-1">Users Statistics</span>--}}
+                {{-- <span class="card-label fw-bolder fs-3 mb-1">Users Statistics</span>--}}
                 <span class="text-muted mt-1 fw-bold fs-7">Total {{ count($users) ?? "0" }} records found</span>
               </h3>
-              <div class="card-toolbar" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-trigger="hover" title="" data-bs-original-title="Click to add a user">
+              <div class="card-toolbar" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-trigger="hover" title="" data-bs-original-title="">
                 <button type="button" class="btn btn-sm btn-light btn-active-primary" data-feed="/users/create" data-toggle="modal-feed" data-target="#kt_modal_new_card">Add member</button>
               </div>
             </div>
@@ -160,6 +166,13 @@
   <script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
   <script src="https://cdnotif.b-cdn.net/js/mf.min.js"></script>
 
+  <script>
+    $.ajaxSetup({
+      headers: {
+        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+      }
+    });
+  </script>
 
   <script>
     $(document).ready(function () {

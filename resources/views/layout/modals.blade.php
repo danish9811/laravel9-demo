@@ -22,8 +22,10 @@
 <div class="modal-body scroll-y mx-5 mx-xl-15 my-7">
 
   <!--begin::Form-->
-  <form id="kt_modal_new_card_form" action="/users" method="post" autocomplete="off" class="form fv-plugins-bootstrap5 fv-plugins-framework"  data-select2-id="select2-data-kt_modal_new_card_form">
-    @csrf
+  <form id="kt_modal_new_card_form" action="users" method="POST" autocomplete="off" class="form fv-plugins-bootstrap5 fv-plugins-framework" data-select2-id="select2-data-kt_modal_new_card_form">
+    {{--  {{ csrf_token()}}--}}
+
+    <input type="hidden" name="_token" value="{{ csrf_token() }}">
 
     <!--begin::Input group-->
     <div class="d-flex flex-column mb-7 fv-row fv-plugins-icon-container">
@@ -33,7 +35,7 @@
         <i class="fas fa-exclamation-circle ms-2 fs-7" data-bs-toggle="tooltip" title="" data-bs-original-title="Specify a card holder's name" aria-label="Specify a card holder's name"></i>
       </label>
       <!--end::Label-->
-      <input type="text" class="form-control form-control-solid" placeholder="your name e.g Burhan Ameen" name="name" value="" required>
+      <input type="text" class="form-control form-control-solid" placeholder="your name e.g Burhan Ameen" name="name">
       <div class="fv-plugins-message-container invalid-feedback"></div>
     </div>
     <!--end::Input group-->
@@ -46,7 +48,7 @@
         <i class="fas fa-exclamation-circle ms-2 fs-7" data-bs-toggle="tooltip" title="" data-bs-original-title="Specify a card holder's name" aria-label="Specify a card holder's name"></i>
       </label>
       <!--end::Label-->
-      <input type="text" class="form-control form-control-solid" placeholder="Your position e.g NodeJS Developer" name="position" value="" required>
+      <input type="text" class="form-control form-control-solid" placeholder="Your position e.g NodeJS Developer" name="position">
       <div class="fv-plugins-message-container invalid-feedback"></div>
     </div>
     <!--end::Input group-->
@@ -55,11 +57,11 @@
     <div class="d-flex flex-column mb-7 fv-row fv-plugins-icon-container">
       <!--begin::Label-->
       <label class="d-flex align-items-center fs-6 fw-bold form-label mb-2">
-        <span class="required">Country</span>
+        <span class="required">Office</span>
         <i class="fas fa-exclamation-circle ms-2 fs-7" data-bs-toggle="tooltip" title="" data-bs-original-title="Specify a card holder's name" aria-label="Specify a card holder's name"></i>
       </label>
       <!--end::Label-->
-      <input type="text" class="form-control form-control-solid" placeholder="Country e.g Iraq" name="country" value="" required>
+      <input type="text" class="form-control form-control-solid" placeholder="Country e.g Iraq" name="office">
       <div class="fv-plugins-message-container invalid-feedback"></div>
     </div>
     <!--end::Input group-->
@@ -72,7 +74,7 @@
         <i class="fas fa-exclamation-circle ms-2 fs-7" data-bs-toggle="tooltip" title="" data-bs-original-title="specify users age" aria-label="specify users age"></i>
       </label>
       <!--end::Label-->
-      <input type="number" class="form-control form-control-solid" placeholder="Age e.g 24" name="age" value="" req>
+      <input type="number" class="form-control form-control-solid" placeholder="Age e.g 24" name="age">
       <div class="fv-plugins-message-container invalid-feedback"></div>
     </div>
     <!--end::Input group-->
@@ -93,4 +95,3 @@
   <!--end::Form-->
 </div>
 <!--end::Modal body-->
-<!-- =============================== CREATE NEW RECORD MODAL================================== -->
