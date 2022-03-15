@@ -12,7 +12,6 @@ Route::resource('/users', TableUsersController::class);
 
 // Route::view('/change', 'change');
 
-
 Route::get('/change', function() {
     return view('change', ['users' => TableUsers::all()]);
 });
@@ -26,7 +25,9 @@ Route::get('/change', function() {
 Route::view('/modal', 'modal');
 
 
-
 // lahore lat long
 // 74.3587
 // 31.5204
+
+
+

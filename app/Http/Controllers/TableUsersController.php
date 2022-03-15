@@ -6,6 +6,7 @@ use App\Models\TableUsers;
 use Illuminate\Http\Request;
 
 class TableUsersController extends Controller {
+
     /**
      * Display a listing of the resource.
      *
