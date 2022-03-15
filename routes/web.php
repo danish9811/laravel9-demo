@@ -1,28 +1,21 @@
 <?php
 
 use App\Http\Controllers\TableUsersController;
-use App\Models\TableUsers;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/dashboard', static function () {
+Route::get('/', static function () {
     return view('dashboard');
 });
 
-Route::resource('/users', TableUsersController::class);
+// Route::resource('/users', TableUsersController::class);
 
-// Route::view('/change', 'change');
-
-Route::get('/change', function() {
-    return view('change', ['users' => TableUsers::all()]);
-});
+Route::get('/users', [TableUsersController::class, 'index']);
+Route::get('/users/create', [TableUsersController::class, 'create']);
+Route::post('/users', [TableUsersController::class, 'store']);
 
 
-// dummy code to overrite the datatable css with theme styles
-// Route::get('/change', static function () {
-//     return view('change', ['users' => TableUsers::all()]);
-// });
 
-Route::view('/modal', 'modal');
+
 
 
 // lahore lat long

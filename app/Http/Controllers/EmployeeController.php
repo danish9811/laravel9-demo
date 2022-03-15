@@ -37,7 +37,7 @@ class EmployeeController extends Controller {
 
     public function show($id) {
         if (Employee::firstWhere('id', '=', $id)) {
-            return response()->json(Employee::firstWhere('id', $id), 200);
+            return response()->json(Employee::firstWhere('id', $id));
         }
 
         return response()->json([

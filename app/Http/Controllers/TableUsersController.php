@@ -22,7 +22,7 @@ class TableUsersController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function create() {
-        //
+        return view('layout.modals');
     }
 
     /**
@@ -32,7 +32,21 @@ class TableUsersController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request) {
-        //
+
+        $data = $request->validate([
+            'name' => 'required|min:5|max:40',
+            'position' => 'required|max:40',
+            'office' => 'required|max:30',
+            'age' => 'required|min:20|max:40'
+        ]);
+
+        dd($data);
+
+
+        TableUsers::create($data);
+
+        // todo : now create a tiny green swal on the top right that shows data added successfully with "name" mentioned
+        return view('/users');
     }
 
     /**
