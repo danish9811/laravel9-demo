@@ -13,7 +13,7 @@ class TableUsersController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function index() {
-        return view('datatable', ['users' => TableUsers::all()]);
+        return view('books', ['users' => TableUsers::all()]);
     }
 
     /**
@@ -32,19 +32,19 @@ class TableUsersController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request) {
-//        dd($request->all());
+        // dd($request->all());
 
-        $request->validate([
-            'name' => 'required',
-            'position' => 'required',
-            'office' => 'required',
+        $data = $request->validate([
+            'name' => 'required|min:6|max::60',
+            'position' => 'required|min:5|max:100',
+            'office' => 'required|min:5|max:50',
             'age' => 'required'
         ]);
 
-//        dd($data);
-
-        TableUsers::create($request->all());
-        return redirect('/users');
+        // dd($data);
+        // TableUsers::create($request->all());
+        TableUsers::create($data);
+        return redirect('/users')->with('message', 'new user created successfully');
     }
 
     /**

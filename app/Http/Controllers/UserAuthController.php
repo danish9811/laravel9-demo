@@ -38,9 +38,6 @@ class UserAuthController extends Controller {
         ]);
     }
 
-
-
-
     // we can use the login method inside of the register method too, to avoid code duplication
     public function login(Request $request) {
         $validator = Validator::make($request->all(), [

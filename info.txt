@@ -1,4 +1,21 @@
 
+
+
+  GET|HEAD        books ........................................................... books.index › BookController@index
+  POST            books ........................................................... books.store › BookController@store
+  GET|HEAD        books/create .................................................. books.create › BookController@create
+  GET|HEAD        books/{book} ...................................................... books.show › BookController@show
+  PUT|PATCH       books/{book} .................................................. books.update › BookController@update
+  DELETE          books/{book} ................................................ books.destroy › BookController@destroy
+  GET|HEAD        books/{book}/edit ................................................. books.edit › BookController@edit
+
+
+
+
+
+
+
+
 https://github.com/otifsolutions/cdn
     => generic form submit
     => form feed

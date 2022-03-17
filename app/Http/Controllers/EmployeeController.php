@@ -22,7 +22,6 @@ class EmployeeController extends Controller {
         return response($response);
     }
 
-
     public function store(Request $request) {
         $data = $request->validate([
             'name' => 'required|max:30|min:4',
