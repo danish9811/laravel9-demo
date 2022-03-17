@@ -10,11 +10,7 @@ Route::get('/', static function () {
 
 // Route::resource('/users', TableUsersController::class);
 
-
 Route::resource('/books', BookController::class);
-
-
-
 
 //
 //Route::get('/books', [BookController::class, 'index']);

@@ -19,19 +19,18 @@ class BookController extends Controller {
 
     public function store(Request $request) {
         $request->validate([
-            'title' => 'required',
-            'author' => 'required',
-            'publisher_id' => 'required',
-            'isbn' => 'required',
+            'title' => 'required|min:5|max:35',
+            'author' => 'required|min:7|max:60',
+            'publisher_id' => 'required|min:10|max:30',
+            'isbn' => 'required|min:10|max:40',
             'price' => 'required'
         ]);
 
         Book::create($request->all());
 
-        //return redirect('/books')->with('message', 'new record added');
         return response()->json([
             'location' => '/books',
-            'message' => 'new book added successfully'
+            'message' => 'book added successfully',
         ]);
     }
 
@@ -40,17 +39,16 @@ class BookController extends Controller {
     }
 
     public function edit(Book $book) {
-        // return view('layout.modals', compact('book'));
-        // return view('layout.modals', ['book' => Book::find($book['id'])]);
         return view('layout.modals', compact('book'));
     }
 
     public function update(Request $request, Book $book) {
+
         $request->validate([
-            'title' => 'required',
-            'author' => 'required',
-            'publisher_id' => 'required',
-            'isbn' => 'required',
+            'title' => 'required|min:5|max:35',
+            'author' => 'required|min:7|max:60',
+            'publisher_id' => 'required|min:10|max:30',
+            // 'isbn' => 'required|min:10|max:40',   // isbn field is not requried at the update time
             'price' => 'required'
         ]);
 
@@ -62,14 +60,14 @@ class BookController extends Controller {
 
         $book->update($request->all());
 
-        // return redirect('/books');
+        return response()->json([
+            'location' => '/books',
+            'message' => 'book record updated'
+        ]);
 
-        return redirect()
-            ->route('books.index')
-            ->with('message', 'book detailed edited successfully');
     }
 
     public function destroy(Book $book) {
-        //
+
     }
 }

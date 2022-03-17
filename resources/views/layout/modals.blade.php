@@ -26,7 +26,7 @@
 
   <!--begin::Form-->
   @if (isset($book))
-    <form id="kt_modal_new_card_form" action="/books/{{ $book }}" method="POST" autocomplete="off" class="form fv-plugins-bootstrap5 fv-plugins-framework" data-select2-id="select2-data-kt_modal_new_card_form">
+    <form id="kt_modal_new_card_form" action="/books/{{ $book['id'] }}" method="POST" autocomplete="off" class="form fv-plugins-bootstrap5 fv-plugins-framework" data-select2-id="select2-data-kt_modal_new_card_form">
     @method('PUT')
   @else
     <form id="kt_modal_new_card_form" action="/books" method="POST" autocomplete="off" class="form fv-plugins-bootstrap5 fv-plugins-framework" data-select2-id="select2-data-kt_modal_new_card_form">
@@ -41,7 +41,7 @@
         <i class="fas fa-exclamation-circle ms-2 fs-7" data-bs-toggle="tooltip" title="" data-bs-original-title="specify book title" aria-label="specify book title"></i>
       </label>
       <!--end::Label-->
-      <input type="text" class="form-control form-control-solid" placeholder="Title e.g Data Structures and Algorithms" name="title" value="{{ isset($book) ? $book['title'] : '' }}" required>
+      <input type="text" class="form-control form-control-solid" placeholder="Title e.g Data Structures and Algorithms" name="title" value="{{ isset($book) ? $book['title'] : '' }}" >
       <div class="fv-plugins-message-container invalid-feedback"></div>
     </div>
     <!--end::Input group-->
@@ -53,7 +53,7 @@
         <i class="fas fa-exclamation-circle ms-2 fs-7" data-bs-toggle="tooltip" title="" data-bs-original-title="specify book author name" aria-label="specify book author name"></i>
       </label>
       <!--end::Label-->
-      <input type="text" class="form-control form-control-solid" placeholder="Author e.g Matt Stauffer" name="author" value="{{ isset($book) ? $book['author'] : '' }}" required>
+      <input type="text" class="form-control form-control-solid" placeholder="Author e.g Matt Stauffer" name="author" value="{{ isset($book) ? $book['author'] : '' }}" >
       <div class="fv-plugins-message-container invalid-feedback"></div>
     </div>
     <!--end::Input group-->
@@ -62,10 +62,10 @@
       <!--begin::Label-->
       <label class="d-flex align-items-center fs-6 fw-bold form-label mb-2">
         <span class="required">PublisherId</span>
-        <i class="fas fa-exclamation-circle ms-2 fs-7" data-bs-toggle="tooltip" title="" data-bs-original-title="Specify a card holder's name" aria-label="Specify a card holder's name"></i>
+        <i class="fas fa-exclamation-circle ms-2 fs-7" data-bs-toggle="tooltip" title="" data-bs-original-title="specify publisher id" aria-label="specify publisher id"></i>
       </label>
       <!--end::Label-->
-      <input type="text" class="form-control form-control-solid" placeholder="Publisher ID e.g QT534234" name="publisher_id" value="{{ isset($book) ? $book['publisher_id'] : '' }}" required>
+      <input type="text" class="form-control form-control-solid" placeholder="Publisher ID e.g QT534234" name="publisher_id" value="{{ isset($book) ? $book['publisher_id'] : '' }}">
       <div class="fv-plugins-message-container invalid-feedback"></div>
     </div>
     <!--end::Input group-->
@@ -74,10 +74,10 @@
       <!--begin::Label-->
       <label class="d-flex align-items-center fs-6 fw-bold form-label mb-2">
         <span class="required">ISBN</span>
-        <i class="fas fa-exclamation-circle ms-2 fs-7" data-bs-toggle="tooltip" title="" data-bs-original-title="Specify a card holder's name" aria-label="Specify a card holder's name"></i>
+        <i class="fas fa-exclamation-circle ms-2 fs-7" data-bs-toggle="tooltip" title="" data-bs-original-title="Add ISBN" aria-label="Add ISBN"></i>
       </label>
       <!--end::Label-->
-      <input type="text" {{ isset($book) ? 'disabled':'required' }} class="form-control form-control-solid" placeholder="ISBN e.g 9792100175726" value="{{ isset($book) ? $book['isbn'] : '' }}" name="isbn">
+      <input type="text" {{ isset($book) ? 'disabled' : 'required' }} class="form-control form-control-solid" placeholder="ISBN e.g 9792100175726" value="{{ isset($book) ? $book['isbn'] : '' }}" name="isbn">
       <div class="fv-plugins-message-container invalid-feedback"></div>
     </div>
     <!--end::Input group-->
@@ -86,10 +86,10 @@
       <!--begin::Label-->
       <label class="d-flex align-items-center fs-6 fw-bold form-label mb-2">
         <span class="required">Price</span>
-        <i class="fas fa-exclamation-circle ms-2 fs-7" data-bs-toggle="tooltip" title="" data-bs-original-title="specify users age" aria-label="specify users age"></i>
+        <i class="fas fa-exclamation-circle ms-2 fs-7" data-bs-toggle="tooltip" title="" data-bs-original-title="specify book price" aria-label="specify book price"></i>
       </label>
       <!--end::Label-->
-      <input type="number" class="form-control form-control-solid" placeholder="Price e.g 10" name="price" value="{{ isset($book) ? $book['price'] : '' }}" required>
+      <input type="number" class="form-control form-control-solid" placeholder="Price e.g 10" name="price" value="{{ isset($book) ? $book['price'] : '' }}" >
       <div class="fv-plugins-message-container invalid-feedback"></div>
     </div>
     <!--end::Input group-->
