@@ -89,7 +89,7 @@
         <i class="fas fa-exclamation-circle ms-2 fs-7" data-bs-toggle="tooltip" title="" data-bs-original-title="specify book price" aria-label="specify book price"></i>
       </label>
       <!--end::Label-->
-      <input type="number" class="form-control form-control-solid" placeholder="Price e.g 10" name="price" value="{{ isset($book) ? $book['price'] : '' }}" >
+      <input type="number" class="form-control form-control-solid" placeholder="Price e.g 10" step="any" name="price" value="{{ isset($book) ? $book['price'] : '' }}" >
       <div class="fv-plugins-message-container invalid-feedback"></div>
     </div>
     <!--end::Input group-->

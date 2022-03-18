@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Book;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 
 class BookController extends Controller {
@@ -34,8 +35,16 @@ class BookController extends Controller {
         ]);
     }
 
-    public function show(Book $book) {
-        //
+    // todo : this method is not called by any means, yet we have written its definition for proper un derstanding
+    public function show(Book $book): JsonResponse {
+        return response()->json([
+            'id' => $book['id'],
+            'title' => $book['title'],
+            'author' => $book['author'],
+            'publisher_id' => $book['publisher_id'],
+            'isbn' => $book['isbn'],
+            'price' => $book['price']
+        ]);
     }
 
     public function edit(Book $book) {
@@ -43,20 +52,12 @@ class BookController extends Controller {
     }
 
     public function update(Request $request, Book $book) {
-
         $request->validate([
             'title' => 'required|min:5|max:35',
             'author' => 'required|min:7|max:60',
             'publisher_id' => 'required|min:10|max:30',
-            // 'isbn' => 'required|min:10|max:40',   // isbn field is not requried at the update time
             'price' => 'required'
         ]);
-
-        // Book::update($request->all());
-        // Book::update($data);
-        // Book::save($request->all());
-        // Book::where('id', '=', $book['id'])->update($data);
-        // Book::updateOrInsert($data);
 
         $book->update($request->all());
 
@@ -64,10 +65,13 @@ class BookController extends Controller {
             'location' => '/books',
             'message' => 'book record updated'
         ]);
-
     }
 
     public function destroy(Book $book) {
-
+        Book::destroy($book['id']);
+        return response()->json([
+            'location' => '/books',
+            'message' => 'book deleted successfully'
+        ]);
     }
 }

@@ -37,11 +37,13 @@ class MesonetApiController extends Controller {
      * <b>getMesonetApiResultViaOtifCurl()</b>
      * <p>this method will fetch the current weather by hitting api endpoint library with Otif Curl library
      * <a href="https://api.synopticdata.com/v2/stations/metadata?">https://api.synopticdata.com/v2/stations/metadata?</a> </p>
-     * @return JsonResponse
+     * @return JsonResponse | mixed
      */
     public function getMesonetApiResultViaOtifCurl() {
+        // todo : json_decode(): Argument #1 ($json) must be of type string, array given
         try {
             $response = json_decode(Curl::Make()
+                ->GET
                 ->url(env('MESONET_API_URL'))
                 ->params([
                     'token' => Setting::get('mesonet_api_token'),
@@ -69,7 +71,7 @@ class MesonetApiController extends Controller {
             curl_setopt_array($curl, [
                 CURLOPT_URL => env('MESONET_API_URL') . http_build_query([
                         'token' => Setting::get('mesonet_api_token'),
-                        'radis' => Setting::get('location_radius')
+                        'radius' => Setting::get('location_radius')
                     ]),
 
                 CURLOPT_RETURNTRANSFER => true,

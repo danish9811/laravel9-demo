@@ -64,9 +64,9 @@ class EmployeeController extends Controller {
                 'message' => 'Employee with an id=' . $id . ' deleted',
             ]);
         }
+
         return response()->json([
             'message' => 'Employee with an id=' . $id . ' does not exit'
         ], 404);
     }
-
 }
