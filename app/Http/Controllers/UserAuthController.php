@@ -60,7 +60,8 @@ class UserAuthController extends Controller {
         if ($user) {
             if (Hash::check($request->password, $user->password)) {
                 return response()->json([
-                    // todo : this is not the right way of creating access tokens, this is personal access token, but we have to use the password grant client token
+                    // todo : this is not the right way of creating access tokens,
+                    // this is personal access token, but we have to use the password grant client token
                     'token' => $user->createToken('API Token')->accessToken
                 ]);
             }

@@ -2,7 +2,6 @@
 <!-- but we have to handle the actually errors, exceptions, the 404 or 500 server errors are menaingless -->
 <!-- watch povilas korop exception handling video and docs on handling laravel exceptions and throwing our own excepitons -->
 
-
 <!DOCTYPE html>
 <!--
 Author: Keenthemes
@@ -54,7 +53,6 @@ License: For each use you must have a valid license purchased only from above li
         <!--end::Message-->
           <h2 class="fw-bold" style="color: #A3A3C7">PHP version <span>{{ PHP_VERSION }}</span></h2>
           <h2 class="fw-bold mb-10" style="color: #A3A3C7">Laravel version <span>{{ app()->version() }}</span></h2>
-
         <!--begin::Link-->
         <a href="/" class="btn btn-primary">Return Home</a>
         <!--end::Link-->

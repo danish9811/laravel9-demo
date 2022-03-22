@@ -4,6 +4,12 @@
 
 @section('page_name', 'Chart')
 
+<!-- if the user login successfully, generate here his name -->
+@section('loginName', '')
+
+<!-- generate here his email -->
+@section('loginEmail', '')
+
 @section('main-container')
 
   <div class="card m-auto">
@@ -11,11 +17,10 @@
       <div class="row gy-5 g-xl-8">
         <div class="col-xl-12">
 
+          <!-- apex chart code div here -->
           <div class="card card-bordered">
             <div class="card-body">
-              <div id="kt_apexcharts_1" style="height: 350px; width: 900px">
-
-              </div>
+              <div id="kt_apexcharts_1" style="height: 350px; width: 900px"></div>
             </div>
           </div>
 
@@ -33,7 +38,6 @@
   <script>
 
     var element = document.getElementById('kt_apexcharts_1');
-
     var height = parseInt(KTUtil.css(element, 'height'));
     var labelColor = KTUtil.getCssVariableValue('--bs-gray-500');
     var borderColor = KTUtil.getCssVariableValue('--bs-gray-200');
@@ -149,8 +153,6 @@
 
     var chart = new ApexCharts(element, options);
     chart.render();
-
-
 
   </script>
 

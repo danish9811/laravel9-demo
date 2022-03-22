@@ -2,11 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\User;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Http;
-use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Str;
 
 class PassportAuthController extends Controller {
@@ -19,16 +18,17 @@ class PassportAuthController extends Controller {
         return view('register-form');
     }
 
-    public function register(Request $request) {
+    public function passportAuthRegisterSubmit(Request $request) {
+
         $request->validate([
             'name' => 'required|string|max:40|min:5',
-            'email' => 'required|string|email|max:255|unique:users|min:8',
-            'password' => 'required|string|min:6|confirmed',
+            'email' => 'required|email|max:60|unique:users|min:8',
+            'password' => 'required|min:6|confirmed',
         ]);
 
         $request['password'] = Hash::make($request['password']);
         $request['remember_token'] = Str::random(10);
-        $user = \App\Models\User::create($request->toArray());
+        $user = User::create($request->toArray());
 
         $token = $user->createToken('API Token')->accessToken;
 
@@ -39,25 +39,31 @@ class PassportAuthController extends Controller {
         ]);
     }
 
-    public function login(Request $request) {
-        $validator = Validator::make($request->all(), [
-            'email' => 'required|string|email|max:255',
-            'password' => 'required|string|min:6|confirmed',
+
+    public function passportAuthLoginSubmit(Request $request) {
+        $request->validate([
+            'email' => 'required|email|max:60|unique:users|min:8',
+            'password' => 'required|min:6|confirmed',
         ]);
 
-        if ($validator->fails()) {
-            return response([
-                'errors' => $validator->errors()->all()
-            ], 422);
-        }
-
-        $user = \App\Models\User::where('email', $request->email)->first();
+        $user = User::where('email', $request->email)->first();
 
         if ($user) {
             if (Hash::check($request->password, $user->password)) {
+                $response = Http::asForm()->post(env('APP_URL') . '/oauth/token', [
+                    'grant_type' => 'password',
+                    'client_id' => $user->id,
+                    'client_secret' => $user->secret,
+                    'username' => $user->email,
+                    'password' => $user->password,
+                    'scope' => null,
+                ]);
+
                 return response()->json([
-                    // todo : this is not the right way of creating access tokens, this is personal access token, but we have to use the password grant client token
-                    'token' => $user->createToken('API Token')->accessToken
+                    // todo : this is not the right way of creating access tokens,
+                    // this is personal access token, but we have to use the password grant client token
+                    // 'token' => $user->createToken('API Token')->accessToken
+
                 ]);
             }
 
@@ -72,10 +78,10 @@ class PassportAuthController extends Controller {
         ], 422);
     }
 
-    public function laravelDocsCode() {
+    public function docsCode() {
         // define your own values here
         // define your own values here, and make it your own
-        $response = Http::asForm()->post('http://passport-app.test/oauth/token', [
+        $response = Http::asForm()->post(env('APP_URL') . '/oauth/token', [
             'grant_type' => 'password',
             'client_id' => 'client-id',
             'client_secret' => 'client-secret',
@@ -90,3 +96,4 @@ class PassportAuthController extends Controller {
     }
 
 }
+

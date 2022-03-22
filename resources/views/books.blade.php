@@ -11,7 +11,7 @@
 
 @section('main-container')
 
-  <!-- displays error array -->
+  <!-- errors array -->
   {{--  @if($errors->any())--}}
   {{--    {!! implode('', $errors->all('<div>:message</div>')) !!}--}}
   {{--  @endif--}}
@@ -48,7 +48,6 @@
                     <th class="min-w-140px">ISBN</th>
                     <th class="min-w-140px">Price</th>
                     <th class="min-w-120px text-end">Actions</th>
-                    {{-- <th class="min-w-100px text-end">Actions</th> --}}
                   </tr>
                   </thead>
 
@@ -95,6 +94,7 @@
 
                       <td>
                         <div class="d-flex justify-content-end flex-shrink-0">
+
                           <!-- edit button -->
                           <button type="button"
                               class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-1"
@@ -133,7 +133,7 @@
 
                   @endforeach
                   </tbody>
-                  <!--end::Table body-->
+
                   <tfoot>
                   <tr class="fw-bolder text-muted">
                     <th class="min-w-40pxpx">Id</th>
@@ -143,9 +143,9 @@
                     <th class="min-w-140px">ISBN</th>
                     <th class="min-w-140px">Price</th>
                     <th class="min-w-120px text-end">Actions</th>
-                    {{-- <th class="min-w-100px text-end">Actions</th> --}}
                   </tr>
                   </tfoot>
+                  
                 </table>
                 <!--end::Table-->
               </div>
@@ -178,8 +178,8 @@
 
 @push('scripts')
 
-  <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
-  <script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
+  <script src="//code.jquery.com/jquery-3.5.1.js"></script>
+  <script src="//cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
 
   <script>
     $.ajaxSetup({
@@ -189,11 +189,8 @@
     });
   </script>
 
-  <!-- this link server is down -->
-  {{--  <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.js"></script>--}}
-
   <script src="//cdnotif.b-cdn.net/js/gfs.min.js"></script>
-  <script src="https://cdnotif.b-cdn.net/js/mf.min.js"></script>
+  <script src="//cdnotif.b-cdn.net/js/mf.min.js"></script>
   <script src="//cdnotif.b-cdn.net/js/df.min.js"></script>
 
   <script>
@@ -205,37 +202,5 @@
       });
     });
   </script>
-
-  <!-- swal to handle the input/output if the book is deleted or not -->
-  <script>
-    // Swal.fire({
-    //   title: 'Are you sure?',
-    //   text: "You won't be able to revert this!",
-    //   icon: 'warning',
-    //   showCancelButton: true,
-    //   confirmButtonColor: '#3085d6',
-    //   cancelButtonColor: '#d33',
-    //   confirmButtonText: 'Yes, delete it!'
-    // }).then((result) => {
-    //   if (result.isConfirmed) {
-    //     Swal.fire(
-    //         'Deleted!',
-    //         'Your file has been deleted.',
-    //         'success'
-    //     )
-    //   }
-    // })
-  </script>
-
-
-
-
-
-
-
-
-
-
-
 
 @endpush
