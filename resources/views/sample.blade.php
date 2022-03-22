@@ -1,6 +1,6 @@
 @extends('layout.app')
 
-@section('title', 'sample')
+@section('title', '')
 
 @section('page_name', 'sample model')
 
@@ -10,3 +10,5 @@
   <!-- todo : content goes here -->
 @endsection
 <!-- main-container ends here -->
+
+

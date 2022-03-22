@@ -27,12 +27,16 @@ class UserAuthController extends Controller {
         $request['remember_token'] = Str::random(10);
         $user = User::create($request->toArray());
 
-        // this is not the right way of generating token, this is personal access token, 
+        // this is not the right way of generating token, this is personal access token,
         // we have to use password grant token, and that's method is different
         // https://laravel.com/docs/9.x/passport#password-grant-tokens
         $token = $user->createToken('API Token')->accessToken;
 
+        // if the user registers successfully, redirect him to the loginPage directly, and reduce
+        // the code duplication, remember throwing error messages and properly displayed on
+        // the register-form.blade.php page
         return response()->json([
+            'header' => '',
             'message' => 'User registered successfully',
             'token' => $token
         ]);
@@ -56,18 +60,19 @@ class UserAuthController extends Controller {
         if ($user) {
             if (Hash::check($request->password, $user->password)) {
                 return response()->json([
-                    // this is not the right way of creating access tokens, this is personal access token, but we have to use the password grant client token
+                    // todo : this is not the right way of creating access tokens, this is personal access token, but we have to use the password grant client token
                     'token' => $user->createToken('API Token')->accessToken
                 ]);
             }
-            return response()->json(["message" => "Password mismatch"], 422);
+            return response()->json([
+                "message" => "Password mismatch"
+            ], 422);
         }
-        return response()->json($response = ["message" => 'User does not exist'], 422);
+
+        // return response()->json($response = ["message" => 'User does not exist'], 422);
+        return response()->json([
+            "message" => 'User does not exist'
+        ], 422);
     }
-
-
-
-
-
 
 }

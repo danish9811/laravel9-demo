@@ -77,7 +77,8 @@
         <i class="fas fa-exclamation-circle ms-2 fs-7" data-bs-toggle="tooltip" title="" data-bs-original-title="Add ISBN" aria-label="Add ISBN"></i>
       </label>
       <!--end::Label-->
-      <input type="text" {{ isset($book) ? 'disabled' : 'required' }} class="form-control form-control-solid" placeholder="ISBN e.g 9792100175726" value="{{ isset($book) ? $book['isbn'] : '' }}" name="isbn">
+{{--      <input type="text" {{ isset($book) ? 'disabled' : 'required' }} class="form-control form-control-solid" placeholder="ISBN e.g 9792100175726" value="{{ isset($book) ? $book['isbn'] : '' }}" name="isbn">--}}
+      <input type="text" class="form-control form-control-solid" placeholder="ISBN e.g 9792100175726" value="{{ isset($book) ? $book['isbn'] : '' }}" name="isbn">
       <div class="fv-plugins-message-container invalid-feedback"></div>
     </div>
     <!--end::Input group-->

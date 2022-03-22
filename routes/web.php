@@ -1,14 +1,17 @@
 <?php
 
 use App\Http\Controllers\BookController;
+use App\Http\Controllers\PassportAuthController;
+
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\TableUsersController;
 
-Route::get('/', static function () {
-    return view('dashboard');
-});
-
-
+Route::view('/', 'dashboard');
 Route::resource('/books', BookController::class);
 
-// todo : now rest of the work for register/login and if logged in, show him apexcharts, passport implement
+Route::get('/login', [PassportAuthController::class, 'showLoginForm'])->name('login');
+Route::get('/register', [PassportAuthController::class, 'showRegisterForm'])->name('register');
+
+Route::post('/login-submit', [PassportAuthController::class, 'loginAuth']);
+Route::post('/register-submit', [PassportAuthController::class, 'registerAuth']);
+
+Route::get('/chart', [PassportAuthController::class, 'showApexChart']);

@@ -17,7 +17,7 @@ License: For each use you must have a valid license purchased only from above li
 -->
 <html lang="en" dir="ltr">
   <!--begin::Head-->
-  <head>4
+  <head>
     <title>404 | Error</title>
     <meta charset="utf-8" />
     {{-- <meta name="description" content="The most advanced Bootstrap Admin Theme on Themeforest trusted by 94,000 beginners and professionals. Multi-demo, Dark Mode, RTL support and complete React, Angular, Vue &amp; Laravel versions. Grab your copy now and get life-time updates for free." /> --}}

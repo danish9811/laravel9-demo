@@ -7,6 +7,7 @@ use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\Http;
 use OTIFSolutions\CurlHandler\Curl;
 use OTIFSolutions\Laravel\Settings\Models\Setting;
+use phpDocumentor\Reflection\DocBlock\Tags\Author;
 
 class MesonetApiController extends Controller {
 
@@ -41,11 +42,16 @@ class MesonetApiController extends Controller {
      */
     public function getMesonetApiResultViaOtifCurl() {
         // todo : json_decode(): Argument #1 ($json) must be of type string, array given
+
+//        dd(Setting::get('location_radius'));
+//        dd(Setting::get('mesonet_api_token'));
+//        dd(env('MESONET_API_URL'));
+
         try {
             $response = json_decode(Curl::Make()
                 ->GET
                 ->url(env('MESONET_API_URL'))
-                ->params([
+                ->body([
                     'token' => Setting::get('mesonet_api_token'),
                     'radius' => Setting::get('location_radius')
                 ])
@@ -56,6 +62,7 @@ class MesonetApiController extends Controller {
                 'description' => $exception->getMessage()
             ], 400);
         }
+
         return $response;
     }
 
@@ -96,3 +103,5 @@ class MesonetApiController extends Controller {
     }
 
 }
+
+

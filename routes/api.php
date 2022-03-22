@@ -10,8 +10,9 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-
 Route::get('/get-weather-via-http', [MesonetApiController::class, 'getMesonetApiResultViaHttp']);
+
+// todo : minor bugs to fix here in this route and action
 Route::get('/get-weather-via-otif-curl', [MesonetApiController::class, 'getMesonetApiResultViaOtifCurl']);
 Route::get('/get-weather-via-curl', [MesonetApiController::class, 'getMesonetApiResultViaCurl']);
 

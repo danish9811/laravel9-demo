@@ -8,6 +8,9 @@ use Illuminate\Http\Request;
 
 class BookController extends Controller {
 
+
+
+
     public function index() {
         return view('books', [
             'books' => Book::all()
@@ -21,9 +24,9 @@ class BookController extends Controller {
     public function store(Request $request) {
         $request->validate([
             'title' => 'required|min:5|max:35',
-            'author' => 'required|min:7|max:60',
-            'publisher_id' => 'required|min:10|max:30',
-            'isbn' => 'required|min:10|max:40',
+            'author' => 'required|min:7|max:35',
+            'publisher_id' => 'required|min:6|max:12',
+            'isbn' => 'required|min:13|max:15',
             'price' => 'required'
         ]);
 
@@ -35,7 +38,7 @@ class BookController extends Controller {
         ]);
     }
 
-    // todo : this method is not called by any means, yet we have written its definition for proper un derstanding
+    // todo : this method is not called by any endpoint, yet we have written its definition for proper understanding
     public function show(Book $book): JsonResponse {
         return response()->json([
             'id' => $book['id'],
@@ -55,7 +58,7 @@ class BookController extends Controller {
         $request->validate([
             'title' => 'required|min:5|max:35',
             'author' => 'required|min:7|max:60',
-            'publisher_id' => 'required|min:10|max:30',
+            'publisher_id' => 'required|min:6|max:12',
             'price' => 'required'
         ]);
 
@@ -74,4 +77,5 @@ class BookController extends Controller {
             'message' => 'book deleted successfully'
         ]);
     }
+
 }

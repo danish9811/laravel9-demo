@@ -47,6 +47,7 @@ class EmployeeController extends Controller {
     public function update(Request $request, $id) {
         if (Employee::firstWhere('id', '=', $id)) {
             Employee::where('id', $id)->update($request->all());
+
             return response()->json([
                 'messsage' => 'record edited successfully',
             ]);
