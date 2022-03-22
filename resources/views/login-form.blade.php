@@ -8,7 +8,6 @@
 
 @section('loginEmail', 'guest@example.com')
 
-<!-- main container starts -->
 @section('main-container')
 
   <div class="card m-auto">
@@ -59,6 +58,6 @@
 <!-- main-container ends here -->
 
 @push('scripts')
-  <script src="{{ asset('js/authentication/sign-in/general.js') }}"></script>
+{{--  <script src="{{ asset('js/authentication/sign-in/general.js') }}"></script>--}}
 @endpush
 

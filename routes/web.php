@@ -13,4 +13,7 @@ Route::get('/register', [PassportAuthController::class, 'showRegisterForm'])->na
 Route::post('/login-submit', [PassportAuthController::class, 'passportAuthLoginSubmit']);
 Route::post('/register-submit', [PassportAuthController::class, 'passportAuthRegisterSubmit']);
 
-Route::get('/chart', [PassportAuthController::class, 'showApexChart']);
+Route::get('/chart', [PassportAuthController::class, 'showApexChart'])
+    ->name('apex-chart')
+    ->middleware('auth');
+

@@ -24,14 +24,14 @@
         <div id="kt_post" class="post d-flex flex-column-fluid">
 
           <!-- we can add more classes here and main-container yield here inside -->
-        {{--          <div class="card m-auto">--}}
-        {{--            <div class="card-body">--}}
-        {{--              <div class="row gy-5 g-xl-8">--}}
-        {{--                <div class="col-xl-12">--}}
-        {{--                </div>--}}
-        {{--              </div>--}}
-        {{--            </div>--}}
-        {{--          </div>--}}
+        {{--  <div class="card m-auto">--}}
+        {{--    <div class="card-body">--}}
+        {{--      <div class="row gy-5 g-xl-8">--}}
+        {{--        <div class="col-xl-12">--}}
+        {{--        </div>--}}
+        {{--      </div>--}}
+        {{--    </div>--}}
+        {{--  </div>--}}
 
 
         <!-- it was here -->
