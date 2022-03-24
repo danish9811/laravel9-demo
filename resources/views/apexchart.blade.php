@@ -32,7 +32,7 @@
 @endsection
 
 @push('scripts')
-
+  
   <script src="{{ asset('js/apexcharts.js') }}"></script>
 
   <script>

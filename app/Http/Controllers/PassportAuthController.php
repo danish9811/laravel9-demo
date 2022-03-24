@@ -20,44 +20,41 @@ class PassportAuthController extends Controller {
     }
 
     public function passportAuthRegisterSubmit(Request $request) {
-
         $request->validate([
-            'name' => 'required|string|max:40|min:5',
-            'email' => 'required|email|max:60|unique:users|min:8',
+            'name' => 'required|min:6|max:40|',
+            'email' => 'required|email|min:8|max:60|unique:users',
             'password' => 'required|min:6|confirmed',
         ]);
 
         $request['password'] = Hash::make($request['password']);
         $request['remember_token'] = Str::random(10);
-        User::create($request->toArray());
+        User::create($request->all());
 
         return response()->json([
             'location' => '/login',
-            'message' => 'User ' . $request->name . ' registered successfully',
+            'message' => 'User ' . $request['name'] . ' registered successfully',
         ]);
     }
 
     public function passportAuthLoginSubmit(Request $request) {
-
-        dd($request->all());
-
         $request->validate([
-            'email' => 'required|email|max:60|unique:users|min:8',
-            'password' => 'required|min:6|confirmed',
+            'email' => 'required|email|max:60|min:8',
+            'password' => 'required|min:6',
         ]);
 
-        $user = User::where('email', $request->email)->first();
-        $client = Client::where('password_client', '=', 1)->first();
+        $user = User::firstWhere('email', $request['email'])->first();
+        $client = Client::firstWhere('password_client', '=', 1);
 
         if ($user) {
-            if (Hash::check($request->password, $user->password)) {
+            if (Hash::check($request['password'], $user['password'])) {
                 $response = Http::asForm()->post(env('APP_URL') . '/oauth/token', [
                     'grant_type' => 'password',
-                    'client_id' => $client->id,
-                    'client_secret' => $client->secret,
+                    'client_id' => $client['id'],
+                    'client_secret' => $client['secret'],
+                    'redirect' => env('APP_URL') . '/apex-chart',
                     'username' => $user->email,
                     'password' => $user->password,
-                    'scope' => null,
+                    'scope' => '*',
                 ]);
 
                 return response()->json([
@@ -71,9 +68,6 @@ class PassportAuthController extends Controller {
             ]);
         }
 
-        return response()->json([
-            "message" => 'User does not exist'
-        ]);
     }
 
     public function showApexChart() {

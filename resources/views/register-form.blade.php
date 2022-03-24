@@ -4,9 +4,9 @@
 
 @section('page_name', 'Register')
 
-@section('loginName', '')
+@section('loginName', 'guest')
 
-@section('loginEmail', '')
+@section('loginEmail', 'guest@gmail.com')
 
 @section('stylesheets')
   <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css"
@@ -38,19 +38,19 @@
               <div class="row fv-row mb-7">
                 <div class="fv-row mb-7">
                   <label class="form-label fw-bolder text-dark fs-6">Name</label>
-                  <input class="form-control form-control-lg form-control-solid" type="text" placeholder="" name="name" />
+                  <input class="form-control form-control-lg form-control-solid" type="text" placeholder="" name="name"/>
                 </div>
               </div>
 
               <div class="fv-row mb-7">
                 <label class="form-label fw-bolder text-dark fs-6">Email</label>
-                <input class="form-control form-control-lg form-control-solid" type="email" placeholder="" name="email" />
+                <input class="form-control form-control-lg form-control-solid" type="email" placeholder="" name="email"/>
               </div>
               <div class="mb-10 fv-row" data-kt-password-meter="true">
                 <div class="mb-1">
                   <label class="form-label fw-bolder text-dark fs-6">Password</label>
                   <div class="position-relative mb-3">
-                    <input class="form-control form-control-lg form-control-solid" type="password" placeholder="" name="password" />
+                    <input class="form-control form-control-lg form-control-solid" type="password" placeholder="" name="password" autocomplete="off"/>
                     <span class="btn btn-sm btn-icon position-absolute translate-middle top-50 end-0 me-n2" data-kt-password-meter-control="visibility">
                         <i class="bi bi-eye-slash fs-2"></i>
                         <i class="bi bi-eye fs-2 d-none"></i>
@@ -68,7 +68,7 @@
               </div>
               <div class="fv-row mb-5">
                 <label class="form-label fw-bolder text-dark fs-6">Confirm Password</label>
-                <input class="form-control form-control-lg form-control-solid" type="password" name="password_confirmation" />
+                <input class="form-control form-control-lg form-control-solid" type="password" name="password_confirmation"/>
               </div>
 
               <div class="text-center">
@@ -94,16 +94,7 @@
 
 @endsection
 
-
-
 @push('scripts')
-  {{--  <script src="{{ asset('js/authentication/sign-up/general.js') }}"></script>--}}
-
-    <script src="//code.jquery.com/jquery-3.5.1.js"></script>
-{{--    <script src="//cdnotif.b-cdn.net/js/pf.min.js"></script>--}}
-    <script src="//cdnotif.b-cdn.net/js/gfs.min.js"></script>
-  {{--  <script src="//cdnotif.b-cdn.net/js/mf.min.js"></script>--}}
-  {{--  <script src="//cdnotif.b-cdn.net/js/df.min.js"></script>--}}
-
-
+  <script src="//code.jquery.com/jquery-3.5.1.js"></script>
+  <script src="//cdnotif.b-cdn.net/js/gfs.min.js"></script>
 @endpush

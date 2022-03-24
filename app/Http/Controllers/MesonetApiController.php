@@ -7,7 +7,6 @@ use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\Http;
 use OTIFSolutions\CurlHandler\Curl;
 use OTIFSolutions\Laravel\Settings\Models\Setting;
-use phpDocumentor\Reflection\DocBlock\Tags\Author;
 
 class MesonetApiController extends Controller {
 
@@ -38,36 +37,29 @@ class MesonetApiController extends Controller {
      * <b>getMesonetApiResultViaOtifCurl()</b>
      * <p>this method will fetch the current weather by hitting api endpoint library with Otif Curl library
      * <a href="https://api.synopticdata.com/v2/stations/metadata?">https://api.synopticdata.com/v2/stations/metadata?</a> </p>
-     * @return JsonResponse | mixed
+     * @return JsonResponse
      */
     public function getMesonetApiResultViaOtifCurl() {
-        // todo : json_decode(): Argument #1 ($json) must be of type string, array given
-
-//        dd(Setting::get('location_radius'));
-//        dd(Setting::get('mesonet_api_token'));
-//        dd(env('MESONET_API_URL'));
-
         try {
             $response = json_decode(Curl::Make()
                 ->GET
-                ->url(env('MESONET_API_URL'))
-                ->body([
+                ->url(url('APP_URL'))
+                ->params([
                     'token' => Setting::get('mesonet_api_token'),
                     'radius' => Setting::get('location_radius')
                 ])
                 ->execute(), true, 512, JSON_THROW_ON_ERROR);
         } catch (Exception $exception) {
             return response()->json([
-                'message' => 'error fetching weather',
+                'message' => 'Error Fetching Weather',
                 'description' => $exception->getMessage()
             ], 400);
         }
-
         return $response;
     }
 
     /**
-     * <b>getMesonetApiResultViaOtifCurl() </b>
+     * <b>getMesonetApiResultViaCurl() </b>
      * <p>this method will fetch the current weather by hitting api endpoint library with Curl
      * <a href="https://api.synopticdata.com/v2/stations/metadata?">https://api.synopticdata.com/v2/stations/metadata?</a> </p>
      * @return JsonResponse
@@ -103,5 +95,3 @@ class MesonetApiController extends Controller {
     }
 
 }
-
-

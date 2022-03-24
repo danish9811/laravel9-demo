@@ -1,6 +1,8 @@
 @extends('layout.app')
 
 @section('title', 'Datatables')
+@section('loginName', 'guest')
+@section('loginEmail', 'guest@gmail.com')
 @section('page_name', 'Book records')
 
 @section('stylesheets')
@@ -174,8 +176,6 @@
 
 @endsection
 <!-- -----------------------------section ends here---------------------------------------------- -->
-
-
 
 
 @push('scripts')
