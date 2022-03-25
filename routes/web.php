@@ -16,4 +16,3 @@ Route::post('/register-submit', [PassportAuthController::class, 'passportAuthReg
 Route::get('/chart', [PassportAuthController::class, 'showApexChart'])
     ->middleware('auth')
     ->name('apex-chart');
-

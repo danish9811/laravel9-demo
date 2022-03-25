@@ -38,7 +38,7 @@
       <!--begin::Label-->
       <label class="d-flex align-items-center fs-6 fw-bold form-label mb-2">
         <span class="required">Title</span>
-        <i class="fas fa-exclamation-circle ms-2 fs-7" data-bs-toggle="tooltip" title="" data-bs-original-title="specify book title" aria-label="specify book title"></i>
+{{--        <i class="fas fa-exclamation-circle ms-2 fs-7" data-bs-toggle="tooltip" title="" data-bs-original-title="specify book title" aria-label="specify book title"></i>--}}
       </label>
       <!--end::Label-->
       <input type="text" class="form-control form-control-solid" placeholder="Title e.g Data Structures and Algorithms" name="title" value="{{ isset($book) ? $book['title'] : '' }}" >
@@ -50,7 +50,7 @@
       <!--begin::Label-->
       <label class="d-flex align-items-center fs-6 fw-bold form-label mb-2">
         <span class="required">Author</span>
-        <i class="fas fa-exclamation-circle ms-2 fs-7" data-bs-toggle="tooltip" title="" data-bs-original-title="specify book author name" aria-label="specify book author name"></i>
+{{--        <i class="fas fa-exclamation-circle ms-2 fs-7" data-bs-toggle="tooltip" title="" data-bs-original-title="specify book author name" aria-label="specify book author name"></i>--}}
       </label>
       <!--end::Label-->
       <input type="text" class="form-control form-control-solid" placeholder="Author e.g Matt Stauffer" name="author" value="{{ isset($book) ? $book['author'] : '' }}" >
@@ -62,7 +62,7 @@
       <!--begin::Label-->
       <label class="d-flex align-items-center fs-6 fw-bold form-label mb-2">
         <span class="required">PublisherId</span>
-        <i class="fas fa-exclamation-circle ms-2 fs-7" data-bs-toggle="tooltip" title="" data-bs-original-title="specify publisher id" aria-label="specify publisher id"></i>
+{{--        <i class="fas fa-exclamation-circle ms-2 fs-7" data-bs-toggle="tooltip" title="" data-bs-original-title="specify publisher id" aria-label="specify publisher id"></i>--}}
       </label>
       <!--end::Label-->
       <input type="text" class="form-control form-control-solid" placeholder="Publisher ID e.g QT534234" name="publisher_id" value="{{ isset($book) ? $book['publisher_id'] : '' }}">
@@ -74,7 +74,7 @@
       <!--begin::Label-->
       <label class="d-flex align-items-center fs-6 fw-bold form-label mb-2">
         <span class="required">ISBN</span>
-        <i class="fas fa-exclamation-circle ms-2 fs-7" data-bs-toggle="tooltip" title="" data-bs-original-title="Add ISBN" aria-label="Add ISBN"></i>
+{{--        <i class="fas fa-exclamation-circle ms-2 fs-7" data-bs-toggle="tooltip" title="" data-bs-original-title="Add ISBN" aria-label="Add ISBN"></i>--}}
       </label>
       <!--end::Label-->
     {{-- <input type="text" {{ isset($book) ? 'disabled' : 'required' }} class="form-control form-control-solid" placeholder="ISBN e.g 9792100175726" value="{{ isset($book) ? $book['isbn'] : '' }}" name="isbn">--}}
@@ -87,7 +87,7 @@
       <!--begin::Label-->
       <label class="d-flex align-items-center fs-6 fw-bold form-label mb-2">
         <span class="required">Price</span>
-        <i class="fas fa-exclamation-circle ms-2 fs-7" data-bs-toggle="tooltip" title="" data-bs-original-title="specify book price" aria-label="specify book price"></i>
+{{--        <i class="fas fa-exclamation-circle ms-2 fs-7" data-bs-toggle="tooltip" title="" data-bs-original-title="specify book price" aria-label="specify book price"></i>--}}
       </label>
       <!--end::Label-->
       <input type="number" class="form-control form-control-solid" placeholder="Price e.g 10" step="any" name="price" value="{{ isset($book) ? $book['price'] : '' }}" >

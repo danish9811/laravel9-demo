@@ -31,7 +31,7 @@ class BookController extends Controller {
 
         return response()->json([
             'location' => '/books',
-            'message' => 'book added successfully',
+            'message' => 'record has been added successfully',
         ]);
     }
 
@@ -63,7 +63,7 @@ class BookController extends Controller {
 
         return response()->json([
             'location' => '/books',
-            'message' => 'book record updated'
+            'message' => 'the record has been updated successfully'
         ]);
     }
 
@@ -71,8 +71,10 @@ class BookController extends Controller {
         Book::destroy($book['id']);
         return response()->json([
             'location' => '/books',
-            'message' => 'book deleted successfully'
+            'message' => 'the record has been deleted successfully'
         ]);
     }
+
+
 
 }

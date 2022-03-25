@@ -37,12 +37,12 @@
 
   <script>
 
-    var element = document.getElementById('kt_apexcharts_1');
-    var height = parseInt(KTUtil.css(element, 'height'));
-    var labelColor = KTUtil.getCssVariableValue('--bs-gray-500');
-    var borderColor = KTUtil.getCssVariableValue('--bs-gray-200');
-    var baseColor = KTUtil.getCssVariableValue('--bs-primary');
-    var secondaryColor = KTUtil.getCssVariableValue('--bs-gray-300');
+    let element = document.getElementById('kt_apexcharts_1');
+    let height = parseInt(KTUtil.css(element, 'height'));
+    let labelColor = KTUtil.getCssVariableValue('--bs-gray-500');
+    let borderColor = KTUtil.getCssVariableValue('--bs-gray-200');
+    let baseColor = KTUtil.getCssVariableValue('--bs-primary');
+    let secondaryColor = KTUtil.getCssVariableValue('--bs-gray-300');
 
     if (!element) {
       return;
@@ -151,7 +151,7 @@
       }
     };
 
-    var chart = new ApexCharts(element, options);
+    let chart = new ApexCharts(element, options);
     chart.render();
 
   </script>
